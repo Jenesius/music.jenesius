@@ -6,8 +6,12 @@
 
              ref = "containerMusicVk"
         >
-            <div class = "vk-online"></div>
-            <div class = "vk-offline"></div>
+            <div class = "vk-online">
+                <p v-for = "index in 1000" :key="index">1241244</p>
+            </div>
+            <div class = "vk-offline">
+                <p v-for = "index in 100" :key="index">44444444</p>
+            </div>
         </div>
     </div>
 </template>
@@ -74,6 +78,8 @@
     height: 100%;
     width: 100%;
     min-width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
     .vk-online{background-color: red;}
     .vk-offline{background-color: brown;}
