@@ -27,7 +27,7 @@
         width: 100%;
 
         background-color: var(--black3);
-        padding: 8px 8px;
+        padding: 7px 8px;
     }
     .header>div{
         background-color: white;

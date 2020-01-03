@@ -1,7 +1,7 @@
 <template>
   <div  id="app">
     <app-header></app-header>
-    <div id = "main">
+    <div id = "main" ref = "mainBlock">
       <view-vk></view-vk>
     </div>
   </div>
@@ -13,7 +13,10 @@
   export default {
     components: {
       'view-vk': ViewVK,
-      AppHeader}
+      AppHeader},
+    mounted() {
+      this.$refs.mainBlock.style.height = (window.innerHeight - 44) + 'px';
+    }
   }
 
 </script>
@@ -28,7 +31,6 @@
   height: 100%;
 }
 #main{
-  height:var(--main-block);
   width: 100%;
   background-color: var(--black2);
 }
