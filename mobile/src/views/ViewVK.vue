@@ -3,20 +3,22 @@
         <app-vk-header></app-vk-header>
         <div class = "container-music"
              v-on:touchend = "checkPosition"
-
+             v-on:touchstart = "reCheckScroll"
              ref = "containerMusicVk"
         >
             <div class = "vk-online"
                 v-on:scroll="fixHeader"
                 ref = vkOnline
             >
-                <p v-for = "index in 1000" :key="index">1241244</p>
+                <app-vk-track-list-elem
+                        v-for = "(elem, index) in list" :key="index" v-bind="elem"
+                ></app-vk-track-list-elem>
             </div>
             <div class = "vk-offline"
                  v-on:scroll="fixHeader"
                  ref = vkOffline
             >
-                <p v-for = "index in 100" :key="index">44444444</p>
+
             </div>
         </div>
         <app-vk-short-player></app-vk-short-player>
@@ -35,9 +37,61 @@
     let scrollPrev = 0;
 
     import AppVkHeader from "../components/vk/AppVkHeader";
+    import AppVkTrackListElem from "../components/vk/AppVkTrackListElem";
     export default {
         name: "ViewVK",
-        components: {AppVkShortPlayer, AppVkHeader},
+        data: function(){
+            return {
+                list: [
+                    {
+                        info: {
+                            title: "Самурай",
+                            author: "Тенса",
+                            duration: "3:01",
+                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
+                        },
+                        isDownload: false,
+                    },
+                    {
+                        info: {
+                            title: "Табор уходит в небо",
+                            author: "Каспийский Груз",
+                            duration: "4:46",
+                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
+                        },
+                        isDownload: false,
+                    },
+                    {
+                        info: {
+                            title: "Трамвайные пути",
+                            author: "Guf",
+                            duration: "3:39",
+                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
+                        },
+                        isDownload: false,
+                    },
+                    {
+                        info: {
+                            title: "Can&#39;t Hold Us (feat. Ray Dalton)",
+                            author: "Macklemore &amp; Ryan Lewis feat. Wanz",
+                            duration: "3:41",
+                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
+                        },
+                        isDownload: false,
+                    },
+                    {
+                        info: {
+                            title: "Трек1",
+                            author: "Артист1",
+                            duration: "3:41",
+                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
+                        },
+                        isDownload: false,
+                    },
+                ],
+            };
+        },
+        components: {AppVkTrackListElem, AppVkShortPlayer, AppVkHeader},
         methods:{
             checkScroll: function(){
                 // eslint-disable-next-line no-console
@@ -48,6 +102,9 @@
                 }else{
                     this.$refs.containerMusicVk.scrollTo(0,0);
                 }
+            },
+            reCheckScroll: function(){
+                clearTimeout(timer);
             },
             checkPosition: function () {
 
