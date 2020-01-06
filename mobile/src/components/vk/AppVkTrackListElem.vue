@@ -43,7 +43,7 @@
 
     display: flex;
 
-    transition: 0.2s;
+    transition: background-color 0.1s;
 }
 .track-vk-elem:active{
     background-color: var(--black4);
@@ -53,7 +53,7 @@
     align-items: center;
 
     padding: 0 10px;
-
+    width: 66px;
 }
 .track-vk-elem>.image>img{
     height: 46px;
@@ -69,6 +69,14 @@
     justify-content: center;
 
     flex-direction: column;
+
+    width: calc(100% - 112px);
+    padding-right: 15px;
+}
+.track-vk-elem>.info>p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .track-vk-elem>.info>.title{
     color: var(--white1);
@@ -79,11 +87,13 @@
     font-size: 12px;
 }
 .track-vk-elem>.time{
-    padding: 0 10px;
+    width: 46px;
     display: flex;
     align-items: center;
+    justify-content: right;
+    padding: 0 10px;
 
     color:var(--gray1);
-    font-size: 14px;
+    font-size: 12px;
 }
 </style>

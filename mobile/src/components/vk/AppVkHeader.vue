@@ -5,10 +5,16 @@
                 <img src = "./../../static/img/ico/search.svg" alt = "search-music-vk">
                 <input type = "text" placeholder="Поиск по музыке">
             </div>
-            <div class = "block-toggle">
-                <p style = "color: #fff ">онлайн</p>
-                <p>оффлайн</p>
-                <div class = ""></div>
+            <div class = "block-toggle"
+                :class = "{offline : !isOnline}"
+            >
+                <p class = "on"
+                    @click="setOnline"
+                >онлайн</p>
+                <p class = "off"
+                    @click="setOffline"
+                >оффлайн</p>
+                <div></div>
             </div>
         </div>
     </div>
@@ -17,6 +23,17 @@
 <script>
 
     export default {
+        props:{
+            isOnline:Boolean,
+        },
+        methods:{
+            setOnline: function () {
+                this.$emit('setActivity', true);
+            },
+            setOffline: function(){
+                this.$emit('setActivity', false);
+            }
+        },
         name: "AppVkHeader"
     }
 </script>
@@ -76,6 +93,9 @@
         z-index: 1;
 
     }
+    .header>div>.block-toggle>p{
+        transition: 0.7s;
+    }
     .header>div>.block-toggle>div{
         position: absolute;
         height: 100%;
@@ -84,9 +104,21 @@
 
         border-radius: 6px;
 
-        transition: 0.4s;
+        transition: 0.7s;
     }
-    .header>div>.block-toggle>.active-right{
-        right: 5px;
+    .header>div>.block-toggle>.on{
+        color:var(--white1);
+    }
+    .header>div>.block-toggle>.off{
+        color:var(--black2);
+    }
+    .header>div>.offline>div{
+        transform: translate(109%);
+    }
+    .header>div>.offline>.on{
+        color:var(--black2) !important;
+    }
+    .header>div>.offline>.off{
+        color:var(--white1) !important;
     }
 </style>

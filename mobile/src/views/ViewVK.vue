@@ -1,26 +1,15 @@
 <template>
     <div id = "view-vk">
-        <app-vk-header></app-vk-header>
-        <div class = "container-music"
-             v-on:touchend = "checkPosition"
-             v-on:touchstart = "reCheckScroll"
-             ref = "containerMusicVk"
-        >
-            <div class = "vk-online"
-                v-on:scroll="fixHeader"
-                ref = vkOnline
-            >
-                <app-vk-track-list-elem
-                        v-for = "(elem, index) in list" :key="index" v-bind="elem"
-                ></app-vk-track-list-elem>
-            </div>
-            <div class = "vk-offline"
-                 v-on:scroll="fixHeader"
-                 ref = vkOffline
-            >
+        <app-vk-header
+            :isOnline="isOnline"
+            @setActivity="setActivity"
+        ></app-vk-header>
 
-            </div>
-        </div>
+        <app-vk-container-music
+             :isOnline="isOnline"
+             @setActivity="setActivity"
+        ></app-vk-container-music>
+
         <app-vk-short-player></app-vk-short-player>
     </div>
 </template>
@@ -28,106 +17,27 @@
 <script>
     // eslint-disable-next-line
     import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
-    // eslint-disable-next-line no-unused-vars
-    let timer;
-    // eslint-disable-next-line
-    let tmp = 0;
 
-    // eslint-disable-next-line no-unused-vars
-    let scrollPrev = 0;
+
+
+
 
     import AppVkHeader from "../components/vk/AppVkHeader";
-    import AppVkTrackListElem from "../components/vk/AppVkTrackListElem";
+    import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
     export default {
         name: "ViewVK",
         data: function(){
             return {
-                list: [
-                    {
-                        info: {
-                            title: "Самурай",
-                            author: "Тенса",
-                            duration: "3:01",
-                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
-                        },
-                        isDownload: false,
-                    },
-                    {
-                        info: {
-                            title: "Табор уходит в небо",
-                            author: "Каспийский Груз",
-                            duration: "4:46",
-                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
-                        },
-                        isDownload: false,
-                    },
-                    {
-                        info: {
-                            title: "Трамвайные пути",
-                            author: "Guf",
-                            duration: "3:39",
-                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
-                        },
-                        isDownload: false,
-                    },
-                    {
-                        info: {
-                            title: "Can&#39;t Hold Us (feat. Ray Dalton)",
-                            author: "Macklemore &amp; Ryan Lewis feat. Wanz",
-                            duration: "3:41",
-                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
-                        },
-                        isDownload: false,
-                    },
-                    {
-                        info: {
-                            title: "Трек1",
-                            author: "Артист1",
-                            duration: "3:41",
-                            image: "https://sun9-19.userapi.com/c847122/v847122474/1f4ecb/e-Y6ze3OKSU.jpg",
-                        },
-                        isDownload: false,
-                    },
-                ],
+                isOnline:true,
+
             };
         },
-        components: {AppVkTrackListElem, AppVkShortPlayer, AppVkHeader},
+        components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
-            checkScroll: function(){
-                // eslint-disable-next-line no-console
-                console.log(this.$refs.containerMusicVk.scrollLeft);
-                if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){
-
-                    this.$refs.containerMusicVk.scrollTo(innerWidth,0);
-                }else{
-                    this.$refs.containerMusicVk.scrollTo(0,0);
-                }
+            setActivity: function(tmp){
+                this.isOnline = tmp;
             },
-            reCheckScroll: function(){
-                clearTimeout(timer);
-            },
-            checkPosition: function () {
 
-                if (tmp === this.$refs.containerMusicVk.scrollLeft){
-                    this.checkScroll();
-                }else{
-                    tmp = this.$refs.containerMusicVk.scrollLeft;
-                    timer = setTimeout(this.checkPosition, 50);
-                }
-            },
-            fixHeader: function(){
-
-                let scrolled = Math.min(this.$refs.vkOffline.scrollTop, this.$refs.vkOnline.scrollTop);
-
-                if ( scrolled > 100 && scrolled > scrollPrev ) {
-                    // eslint-disable-next-line no-console
-                    console.log('out');
-                } else {
-                    // eslint-disable-next-line no-console
-                    console.log('in');
-                }
-                scrollPrev = scrolled;
-            }
         }
     }
 </script>
