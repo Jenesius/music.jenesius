@@ -15,13 +15,7 @@
 </template>
 
 <script>
-    // eslint-disable-next-line
     import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
-
-
-
-
-
     import AppVkHeader from "../components/vk/AppVkHeader";
     import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
     export default {
