@@ -1,5 +1,6 @@
 <template>
   <div  id="app">
+    <test></test>
     <app-header></app-header>
     <div id = "main" ref = "mainBlock">
       <view-vk></view-vk>
@@ -10,8 +11,10 @@
 <script>
   import AppHeader from "./components/AppHeader";
   import ViewVK from "./views/ViewVK";
+  import Test from "./components/test/test";
   export default {
     components: {
+      Test,
       'view-vk': ViewVK,
       AppHeader},
     mounted() {
