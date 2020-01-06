@@ -24,7 +24,10 @@ class Player{
         return this._list.get()[pos];
     }
     currentTrack(){
-        this.getTrack(this._pos);
+        return this.getTrack(this._pos);
+    }
+    getList(){
+        return this._list.get();
     }
 
     activate(){
