@@ -23,8 +23,9 @@ const actions = {};
 const mutations = {
     setPositionOnline(state, tmp){
       state.position.isOnline = tmp;
-        // eslint-disable-next-line no-console
-      console.log('isOnline', tmp);
+    },
+    setPositionIndex(state, tmp){
+        state.position.index = tmp;
     },
     setUserID(state, id){
         state.userID = id;

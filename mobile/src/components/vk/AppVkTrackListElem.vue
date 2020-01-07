@@ -21,9 +21,8 @@
 </template>
 
 <script>
-    // eslint-disable-next-line no-unused-vars
     import Player from '../../static/js/player';
-
+    import {mapMutations} from 'vuex';
 
     export default {
         name: "AppVkTrackListElem",
@@ -37,15 +36,16 @@
             },
             isDownload: Boolean,
             index:Number,
-
         },
         methods:{
+            ...mapMutations({
+                setPositionIndex: 'vk/setPositionIndex',
+            }),
             setTrack: function () {
                 Player.setTrack(this.index);
-                this.$emit('setTrack', this.index);
+                this.setPositionIndex(this.index);
             }
         }
-
     }
 </script>
 
