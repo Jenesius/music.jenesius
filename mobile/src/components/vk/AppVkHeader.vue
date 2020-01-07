@@ -21,17 +21,25 @@
 </template>
 
 <script>
+    import {mapState, mapMutations} from 'vuex';
 
     export default {
-        props:{
-            isOnline:Boolean,
+        computed:{
+            ...mapState({
+                isOnline: function(state){
+                    return state.vk.position.isOnline;
+                }
+            }),
         },
         methods:{
+            ...mapMutations({
+                setPositionOnline: 'vk/setPositionOnline',
+            }),
             setOnline: function () {
-                this.$emit('setActivity', true);
+                this.setPositionOnline(true);
             },
             setOffline: function(){
-                this.$emit('setActivity', false);
+                this.setPositionOnline(false);
             }
         },
         name: "AppVkHeader"
