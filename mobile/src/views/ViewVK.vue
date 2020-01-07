@@ -8,9 +8,12 @@
         <app-vk-container-music
              :isOnline="isOnline"
              @setActivity="setActivity"
+             @setTrack = "setTrack"
         ></app-vk-container-music>
 
-        <app-vk-short-player></app-vk-short-player>
+        <app-vk-short-player
+            :position = "position"
+        ></app-vk-short-player>
     </div>
 </template>
 
@@ -23,7 +26,7 @@
         data: function(){
             return {
                 isOnline:true,
-
+                position:-1,
             };
         },
         components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
@@ -31,7 +34,15 @@
             setActivity: function(tmp){
                 this.isOnline = tmp;
             },
+            setTrack: function (index) {
+                // eslint-disable-next-line no-console
+                console.log(this.position);
+                this.position = index;
+            }
 
+        },
+        mounted() {
+            this.position = 0;
         }
     }
 </script>

@@ -5,17 +5,21 @@
                 <img src = "./test.jpg" alt = "avatar">
             </div>
             <div class = "title">
-                <p>Голова, чтобы думать</p>
+                <p>{{ track.info.title }}</p>
             </div>
         </div>
         <div class = "nav">
-            <div class = "active">
+            <div class = "active"
+                @click = "activate"
+            >
                 <div>
                     <img src = "./../../static/img/ico/audio/play.svg" alt = "active">
                 </div>
 
             </div>
-            <div class = "next">
+            <div class = "next"
+                @click = "next"
+            >
                 <div>
                     <img src = "./../../static/img/ico/audio/next.svg" alt = "next">
                 </div>
@@ -26,8 +30,26 @@
 </template>
 
 <script>
+    import Player from "../../static/js/player";
+
     export default {
-        name: "AppVkShortPlayer"
+        name: "AppVkShortPlayer",
+        props: {
+            position:Number,
+        },
+        computed:{
+            track: function() {
+                return Player.getTrack(this.position);
+            },
+        },
+        methods:{
+            activate: function () {
+                Player.activate();
+            },
+            next: function(){
+                Player.next();
+            },
+        }
     }
 </script>
 

@@ -1,13 +1,15 @@
 <template>
-    <div class = "track-vk-elem">
+    <div class = "track-vk-elem" :pos="index"
+        v-on:click = "setTrack"
+    >
         <div class = "image">
             <img alt = "image of track"
-                :src = "info.image"
+                :src = "info.urlImage"
             >
         </div>
         <div class = "info">
             <p class = "title">{{ info.title }}</p>
-            <p class = "author">{{ info.author }}</p>
+            <p class = "author">{{ info.artist }}</p>
         </div>
         <div class = "download">
             <!--<img src = "#" alt = "track is Donwload">-->
@@ -19,19 +21,30 @@
 </template>
 
 <script>
+    // eslint-disable-next-line no-unused-vars
+    import Player from '../../static/js/player';
+
+
     export default {
         name: "AppVkTrackListElem",
         props: {
-
-                info: {
-                    title: "",
-                    author: "",
-                    duration: "",
-                    image: "",
-                },
-                isDownload: Boolean,
+            info: {
+                title: "",
+                artist: "",
+                duration: "",
+                urlImage: "",
+                urlTrack: "",
+            },
+            isDownload: Boolean,
+            index:Number,
 
         },
+        methods:{
+            setTrack: function () {
+                Player.setTrack(this.index);
+                this.$emit('setTrack', this.index);
+            }
+        }
 
     }
 </script>

@@ -10,24 +10,19 @@ class Player{
 
         this._pos = 0;
     }
-
-
-    setList(list){
+    setList(list) {
         this._list.set(list);
     }
-    setTrack(pos){
+    setTrack(pos) {
         this._track.set(this.getTrack(pos));
     }
-
-
-    getTrack(pos){
+    getTrack(pos) {
         return this._list.get()[pos];
     }
     currentTrack(){
-        this.getTrack(this._pos);
+        return this.getTrack(this._pos);
     }
-
-    activate(){
+    activate() {
         if (this._track.paused){
             this._track.play();
         }else {

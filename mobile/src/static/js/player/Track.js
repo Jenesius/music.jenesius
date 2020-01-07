@@ -2,6 +2,7 @@
 
 export default class Track extends Audio{
     set(_obj){
-        this.src = _obj.urlTrack;
+
+        this.src = _obj.info.urlTrack;
     }
 }

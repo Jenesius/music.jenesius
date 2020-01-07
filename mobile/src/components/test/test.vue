@@ -5,24 +5,19 @@
 
 <script>
     /* eslint-disable no-console */
-    import Player from "../../static/js/player";
 
-    // eslint-disable-next-line no-console
-    console.log(Player);
+    import {mapState } from 'vuex';
 
-
-    let _arr = [1,2,3,4,5,6];
 
     export default {
         name: "test",
+        computed: {
+            ...mapState({
+                checkoutStatus: state => state.vk.position,
+            }),
+        },
         mounted() {
-
-            this.$store.state.vk.commit('setOnline', _arr);
-            Player.setList(this.$store.state.vk.getters.getOnline());
-
-            console.log('STORE', this.$store.state.vk.getters.getOnline());
-
-            console.log('PLAYER', Player.getList());
+            console.log(this.checkoutStatus);
         }
     }
 </script>
