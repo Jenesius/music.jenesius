@@ -14,7 +14,6 @@
         <div class = "vk-offline"
              ref = vkOffline
         >
-
         </div>
     </div>
 </template>
@@ -25,10 +24,6 @@
 
     import { mapState, mapMutations } from "vuex";
 
-    // eslint-disable-next-line no-unused-vars
-    let timer;
-    // eslint-disable-next-line
-    let tmp = 0;
 
     // eslint-disable-next-line no-unused-vars
     let list = [
@@ -79,31 +74,35 @@
         data: function(){
             return {
                 list:[],
+                timer:Number,
+                scrollLeftEnd:Number
             };
         },
         methods: {
-            ...mapMutations(['setPositionOnline']),
+            ...mapMutations({
+                setPositionOnline: 'vk/setPositionOnline',
+            }),
             checkScroll: function(){
                 if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){
                     /*OFFLINE*/
-                    this.$emit('setActivity', false);
+                    this.setPositionOnline(false);
+                    this.$refs.containerMusicVk.scrollTo(innerWidth,0);
 
                 }else{
                     /*ONLINE*/
-                    this.$emit('setActivity', true);
+                    this.setPositionOnline(true);
                     this.$refs.containerMusicVk.scrollTo(0,0);
                 }
             },
             reCheckScroll: function(){
-                clearTimeout(timer);
+                clearTimeout(this.timer);
             },
             checkPosition: function () {
-
-                if (tmp === this.$refs.containerMusicVk.scrollLeft){
+                if (this.scrollLeftEnd === this.$refs.containerMusicVk.scrollLeft){
                     this.checkScroll();
                 }else{
-                    tmp = this.$refs.containerMusicVk.scrollLeft;
-                    timer = setTimeout(this.checkPosition, 50);
+                    this.scrollLeftEnd = this.$refs.containerMusicVk.scrollLeft;
+                    this.timer = setTimeout(this.checkPosition, 50);
                 }
             },
         },
