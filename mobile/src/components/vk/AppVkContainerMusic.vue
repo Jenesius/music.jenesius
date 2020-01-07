@@ -20,12 +20,10 @@
 
 <script>
     import AppVkTrackListElem from "./AppVkTrackListElem";
-    import Player from "../../static/js/player";
-
     import { mapState, mapMutations } from "vuex";
 
 
-    // eslint-disable-next-line no-unused-vars
+    /*
     let list = [
         {
             info: {
@@ -61,21 +59,23 @@
             index:2,
         },
     ];
-
+*/
     export default {
         name: "AppVkContainerMusic",
         computed: {
             ...mapState({
                 isOnline: function (state) {
                     return state.vk.position.isOnline;
+                },
+                list: function (state) {
+                    return state.vk.music.online;
                 }
             }),
         },
         data: function(){
             return {
-                list:[],
                 timer:Number,
-                scrollLeftEnd:Number
+                scrollLeftEnd:Number,
             };
         },
         methods: {
@@ -117,8 +117,6 @@
         },
         components: {AppVkTrackListElem},
         mounted() {
-            this.list = list;
-            Player.setList(list);
         }
     }
 </script>
