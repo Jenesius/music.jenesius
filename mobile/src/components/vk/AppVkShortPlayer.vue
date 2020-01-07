@@ -2,7 +2,9 @@
     <div id = "short-vk-player">
         <div class = "info-block">
             <div class = "avatar">
-                <img src = "./test.jpg" alt = "avatar">
+                <img  alt = "avatar"
+                    :src = "track.info.urlImage"
+                >
             </div>
             <div class = "title">
                 <p>{{ track.info.title }}</p>
@@ -31,23 +33,30 @@
 
 <script>
     import Player from "../../static/js/player";
+    import {mapState, mapMutations} from 'vuex';
 
     export default {
         name: "AppVkShortPlayer",
-        props: {
-            position:Number,
-        },
         computed:{
             track: function() {
                 return Player.getTrack(this.position);
             },
+            ...mapState({
+                position: function(state){
+                    return state.vk.position.index;
+                }
+            }),
         },
         methods:{
+            ...mapMutations({
+                setPositionIndex: 'vk/setPositionIndex',
+            }),
             activate: function () {
                 Player.activate();
             },
             next: function(){
                 Player.next();
+                this.setPositionIndex(Player.index);
             },
         }
     }

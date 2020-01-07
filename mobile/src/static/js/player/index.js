@@ -17,10 +17,15 @@ class Player{
         this._track.set(this.getTrack(pos));
     }
     getTrack(pos) {
+        if(this._list.length === 0){
+            return {
+                info:{},
+            };
+        }
         return this._list.get()[pos];
     }
-    currentTrack(){
-        return this.getTrack(this._pos);
+    get currentTrack(){
+        return this.getTrack(this._pos) || {};
     }
     activate() {
         if (this._track.paused){
@@ -42,6 +47,10 @@ class Player{
     }
     prev(){
         this._pos = this._pos - 1;
+    }
+
+    get index(){
+        return this._pos;
     }
 }
 export default new Player();
