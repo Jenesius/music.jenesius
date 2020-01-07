@@ -4,20 +4,15 @@
 </template>
 
 <script>
-    /* eslint-disable no-console */
-
-    import {mapState } from 'vuex';
 
 
     export default {
         name: "test",
         computed: {
-            ...mapState({
-                checkoutStatus: state => state.vk.position,
-            }),
+
         },
         mounted() {
-            console.log(this.checkoutStatus);
+
         }
     }
 </script>

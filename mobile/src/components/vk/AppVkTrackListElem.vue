@@ -1,6 +1,6 @@
 <template>
     <div class = "track-vk-elem" :pos="index"
-        v-on:click = "setTrack"
+        @click = "setTrack"
     >
         <div class = "image">
             <img alt = "image of track"
@@ -43,6 +43,7 @@
             }),
             setTrack: function () {
                 Player.setTrack(this.index);
+
                 this.setPositionIndex(this.index);
             }
         }

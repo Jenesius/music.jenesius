@@ -1,18 +1,14 @@
 <template>
     <div id = "view-vk">
         <app-vk-header
-            :isOnline="isOnline"
-            @setActivity="setActivity"
+
         ></app-vk-header>
 
         <app-vk-container-music
-             :isOnline="isOnline"
-             @setActivity="setActivity"
-             @setTrack = "setTrack"
+
         ></app-vk-container-music>
 
         <app-vk-short-player
-            :position = "position"
         ></app-vk-short-player>
     </div>
 </template>
@@ -21,28 +17,21 @@
     import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
     import AppVkHeader from "../components/vk/AppVkHeader";
     import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
+    import Api from '../static/js/api';
+
     export default {
         name: "ViewVK",
         data: function(){
-            return {
-                isOnline:true,
-                position:-1,
-            };
+            return {};
         },
         components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
-            setActivity: function(tmp){
-                this.isOnline = tmp;
-            },
-            setTrack: function (index) {
-                // eslint-disable-next-line no-console
-                console.log(this.position);
-                this.position = index;
-            }
-
         },
         mounted() {
-            this.position = 0;
+            Api.vk.getUserMusic().then(e => {
+                // eslint-disable-next-line no-console
+                console.log(e);
+            })
         }
     }
 </script>
