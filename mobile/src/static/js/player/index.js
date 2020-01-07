@@ -27,6 +27,10 @@ class Player{
     get currentTrack(){
         return this.getTrack(this._pos) || {};
     }
+    getList(){
+        return this._list.get();
+
+    }
     activate() {
         if (this._track.paused){
             this._track.play();
