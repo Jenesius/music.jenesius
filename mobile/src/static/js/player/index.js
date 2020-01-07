@@ -10,27 +10,28 @@ class Player{
 
         this._pos = 0;
     }
-
-
-    setList(list){
+    setList(list) {
         this._list.set(list);
     }
-    setTrack(pos){
+    setTrack(pos) {
         this._track.set(this.getTrack(pos));
     }
-
-
-    getTrack(pos){
+    getTrack(pos) {
+        if(this._list.length === 0){
+            return {
+                info:{},
+            };
+        }
         return this._list.get()[pos];
     }
-    currentTrack(){
-        return this.getTrack(this._pos);
+    get currentTrack(){
+        return this.getTrack(this._pos) || {};
     }
     getList(){
         return this._list.get();
-    }
 
-    activate(){
+    }
+    activate() {
         if (this._track.paused){
             this._track.play();
         }else {
@@ -50,6 +51,10 @@ class Player{
     }
     prev(){
         this._pos = this._pos - 1;
+    }
+
+    get index(){
+        return this._pos;
     }
 }
 export default new Player();

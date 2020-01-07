@@ -2,20 +2,26 @@
     <div id = "short-vk-player">
         <div class = "info-block">
             <div class = "avatar">
-                <img src = "./test.jpg" alt = "avatar">
+                <img  alt = "avatar"
+                    :src = "track.info.urlImage"
+                >
             </div>
             <div class = "title">
-                <p>Голова, чтобы думать</p>
+                <p>{{ track.info.title }}</p>
             </div>
         </div>
         <div class = "nav">
-            <div class = "active">
+            <div class = "active"
+                @click = "activate"
+            >
                 <div>
                     <img src = "./../../static/img/ico/audio/play.svg" alt = "active">
                 </div>
 
             </div>
-            <div class = "next">
+            <div class = "next"
+                @click = "next"
+            >
                 <div>
                     <img src = "./../../static/img/ico/audio/next.svg" alt = "next">
                 </div>
@@ -26,8 +32,33 @@
 </template>
 
 <script>
+    import Player from "../../static/js/player";
+    import {mapState, mapMutations} from 'vuex';
+
     export default {
-        name: "AppVkShortPlayer"
+        name: "AppVkShortPlayer",
+        computed:{
+            track: function() {
+                return Player.getTrack(this.position);
+            },
+            ...mapState({
+                position: function(state){
+                    return state.vk.position.index;
+                }
+            }),
+        },
+        methods:{
+            ...mapMutations({
+                setPositionIndex: 'vk/setPositionIndex',
+            }),
+            activate: function () {
+                Player.activate();
+            },
+            next: function(){
+                Player.next();
+                this.setPositionIndex(Player.index);
+            },
+        }
     }
 </script>
 

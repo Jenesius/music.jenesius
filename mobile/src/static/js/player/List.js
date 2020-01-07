@@ -12,4 +12,7 @@ export default class AudioList{
     get (){
         return this._arr;
     }
+    get length(){
+        return this._arr.length;
+    }
 }

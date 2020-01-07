@@ -1,16 +1,15 @@
 <template>
     <div id = "view-vk">
         <app-vk-header
-            :isOnline="isOnline"
-            @setActivity="setActivity"
+
         ></app-vk-header>
 
         <app-vk-container-music
-             :isOnline="isOnline"
-             @setActivity="setActivity"
+
         ></app-vk-container-music>
 
-        <app-vk-short-player></app-vk-short-player>
+        <app-vk-short-player
+        ></app-vk-short-player>
     </div>
 </template>
 
@@ -18,20 +17,27 @@
     import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
     import AppVkHeader from "../components/vk/AppVkHeader";
     import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
+    import Api from '../static/js/api';
+    import Player from "../static/js/player";
+    import {mapMutations} from 'vuex';
+
     export default {
         name: "ViewVK",
         data: function(){
-            return {
-                isOnline:true,
-
-            };
+            return {};
         },
+
         components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
-            setActivity: function(tmp){
-                this.isOnline = tmp;
-            },
-
+            ...mapMutations({
+                setOnlineMusic: 'vk/setOnlineMusic',
+            }),
+        },
+        mounted() {
+            Api.vk.getUserMusic().then(e => {
+                this.setOnlineMusic(e);
+                Player.setList(e);
+            })
         }
     }
 </script>
