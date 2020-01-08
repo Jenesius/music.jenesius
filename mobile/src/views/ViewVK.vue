@@ -31,12 +31,15 @@
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
+                setPositionIndex: 'vk/setPositionIndex',
             }),
         },
         mounted() {
             Api.vk.getUserMusic().then(e => {
                 this.setOnlineMusic(e);
+                this.setPositionIndex(0);
                 Player.setList(e);
+                Player.setTrack(0);
             })
         }
     }

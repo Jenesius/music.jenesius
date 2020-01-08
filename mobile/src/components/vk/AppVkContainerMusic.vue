@@ -1,4 +1,3 @@
-
 <template>
     <div class = "container-music"
          v-on:touchend = "checkPosition"
@@ -8,11 +7,9 @@
         <div class = "vk-online"
              ref = vkOnline
         >
-
             <app-vk-track-list-elem
                     v-for = "(elem, index) in list" :key="index" v-bind="elem"
             ></app-vk-track-list-elem>
-
         </div>
         <div class = "vk-offline"
              ref = vkOffline
@@ -24,9 +21,7 @@
 <script>
     import AppVkTrackListElem from "./AppVkTrackListElem";
     import { mapState, mapGetters, mapMutations } from "vuex";
-
-
-
+    
     export default {
         name: "AppVkContainerMusic",
         computed: {
@@ -43,6 +38,7 @@
             return {
                 timer:Number,
                 scrollLeftEnd:Number,
+                scrollTopEnd:Number,
             };
         },
         methods: {
@@ -50,9 +46,6 @@
                 setPositionOnline: 'vk/setPositionOnline',
             }),
             checkScroll: function(){
-
-
-
                 if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){
                     /*OFFLINE*/
                     this.setPositionOnline(false);
@@ -66,6 +59,7 @@
             },
             reCheckScroll: function(){
                 clearTimeout(this.timer);
+                this.scrollTopEnd = this.$refs.containerMusicVk.scrollTop;
             },
             checkPosition: function () {
                 if (this.scrollLeftEnd === this.$refs.containerMusicVk.scrollLeft){
