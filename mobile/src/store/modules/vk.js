@@ -6,7 +6,9 @@ const state = {
     position:{
         isOnline:Boolean,
         index:Number,
+        isPlayer:false,
     },
+
     music:{
         online:[],
         offline:[],
@@ -34,8 +36,12 @@ const actions = {};
 
 //mutations
 const mutations = {
+
     updateFilter(state, tmp){
         state.filterStr = tmp;
+    },
+    setPositionPlayer(state, tmp){
+        state.position.isPlayer = tmp;
     },
     setPositionOnline(state, tmp){
       state.position.isOnline = tmp;

@@ -38,7 +38,7 @@
             return {
                 timer:Number,
                 scrollLeftEnd:Number,
-                scrollTopEnd:Number,
+
             };
         },
         methods: {

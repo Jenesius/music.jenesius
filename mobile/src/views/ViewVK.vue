@@ -1,5 +1,6 @@
 <template>
     <div id = "view-vk">
+
         <app-vk-header
 
         ></app-vk-header>
@@ -8,8 +9,14 @@
 
         ></app-vk-container-music>
 
+
+
         <app-vk-short-player
+
         ></app-vk-short-player>
+
+        <app-vk-player></app-vk-player>
+
     </div>
 </template>
 
@@ -20,6 +27,7 @@
     import Api from '../static/js/api';
     import Player from "../static/js/player";
     import {mapMutations} from 'vuex';
+    import AppVkPlayer from "../components/vk/AppVkPlayer";
 
     export default {
         name: "ViewVK",
@@ -27,7 +35,8 @@
             return {};
         },
 
-        components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
+        // eslint-disable-next-line vue/no-unused-components
+        components: {AppVkPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
@@ -47,7 +56,6 @@
 
 <style>
 #view-vk{
-    position: relative;
     overflow: hidden;
 
     height: 100%;

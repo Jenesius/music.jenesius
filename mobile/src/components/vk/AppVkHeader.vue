@@ -31,7 +31,7 @@
         computed:{
             filterStr: {
                 get () {
-                    return '';
+                    return this.$store.state.vk.filterStr;
                 },
                 set (value) {
                     this.$store.commit('vk/updateFilter', value);
