@@ -8,10 +8,18 @@
     >
         <div class = "space"></div>
         <div class = "player">
-            <div class = "header"></div>
-            <div class = "trackImage"></div>
+            <div class = "header">
+                <img src = "#">
+            </div>
+            <div class = "trackImage">
+                <img src = "#">
+            </div>
             <div class = "trackTimeLine"></div>
-            <div class = "trackInfo"></div>
+            <div class = "trackInfo">
+                <p class = "title">Там за кордоном</p>
+                <p class = "artist">Честный</p>
+            </div>
+            <div class = "trackFunction"></div>
         </div>
     </div>
 </template>
