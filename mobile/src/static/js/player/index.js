@@ -24,9 +24,6 @@ class Player{
         }
         return this._list.get()[pos];
     }
-    get currentTrack(){
-        return this.getTrack(this._pos) || {};
-    }
     getList(){
         return this._list.get();
 
@@ -45,6 +42,9 @@ class Player{
         this._track.pause();
     }
 
+    get track(){
+        return this._track;
+    }
 
     next(){
         this._pos = this._pos + 1;

@@ -8,7 +8,9 @@ const state = {
         index:Number,
         isPlayer:false,
     },
-
+    player:{
+        timerTimeLine:Number,
+    },
     music:{
         online:[],
         offline:[],
@@ -36,7 +38,9 @@ const actions = {};
 
 //mutations
 const mutations = {
-
+    setTimerTimeLine(state, idTimer){
+        state.player.timerTimeLine = idTimer;
+    },
     updateFilter(state, tmp){
         state.filterStr = tmp;
     },
