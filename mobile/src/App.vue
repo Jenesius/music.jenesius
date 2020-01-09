@@ -1,8 +1,7 @@
 <template>
-  <div  id="app">
-    <test></test>
+  <div  id="app" ref = "mainBlock">
     <app-header></app-header>
-    <div id = "main" ref = "mainBlock">
+    <div id = "main" >
       <view-vk></view-vk>
     </div>
   </div>
@@ -14,11 +13,12 @@
   import Test from "./components/test/test";
   export default {
     components: {
+      // eslint-disable-next-line vue/no-unused-components
       Test,
       'view-vk': ViewVK,
       AppHeader},
     mounted() {
-      this.$refs.mainBlock.style.height = (window.innerHeight - 44) + 'px';
+      //this.$refs.mainBlock.style.height = (window.innerHeight) + 'px';
     }
   }
 
@@ -32,8 +32,12 @@
 
 #app {
   height: 100%;
+  overflow-y: scroll;
+  position: relative;
+
 }
 #main{
+  height: calc(100% - 44px);
   width: 100%;
   background-color: var(--black2);
 }

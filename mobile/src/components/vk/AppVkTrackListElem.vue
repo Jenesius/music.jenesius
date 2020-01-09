@@ -15,7 +15,7 @@
             <!--<img src = "#" alt = "track is Donwload">-->
         </div>
         <div class = "time">
-            <p>{{ info.duration }}</p>
+            <p>{{ customDuration }}</p>
         </div>
     </div>
 </template>
@@ -23,6 +23,7 @@
 <script>
     import Player from '../../static/js/player';
     import {mapMutations} from 'vuex';
+    import Time from '../../static/js/default/timeModify';
 
     export default {
         name: "AppVkTrackListElem",
@@ -36,6 +37,11 @@
             },
             isDownload: Boolean,
             index:Number,
+        },
+        computed: {
+            customDuration:function(){
+                return Time(this.info.duration).modifyDuration();
+            }
         },
         methods:{
             ...mapMutations({

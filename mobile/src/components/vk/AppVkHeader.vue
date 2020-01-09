@@ -3,7 +3,7 @@
         <div>
             <div class = "block-search">
                 <img src = "./../../static/img/ico/search.svg" alt = "search-music-vk">
-                <input type = "text" placeholder="Поиск по музыке">
+                <input type = "text" placeholder="Поиск по музыке" v-model = filterStr>
             </div>
             <div class = "block-toggle"
                 :class = "{offline : !isOnline}"
@@ -24,7 +24,19 @@
     import {mapState, mapMutations} from 'vuex';
 
     export default {
+        data: function(){
+            return {
+            };
+        },
         computed:{
+            filterStr: {
+                get () {
+                    return this.$store.state.vk.filterStr;
+                },
+                set (value) {
+                    this.$store.commit('vk/updateFilter', value);
+                },
+            },
             ...mapState({
                 isOnline: function(state){
                     return state.vk.position.isOnline;
@@ -48,16 +60,18 @@
 
 <style scoped>
     .header{
-        height: 50px;
+
         width: 100%;
 
         background-color: var(--black3);
         padding: 7px 10px;
     }
     .header>div{
+
+        height: 30px;
+
         background-color: white;
         border-radius: 6px;
-        height: 100%;
         width: 100%;
         padding: 4px 0;
 

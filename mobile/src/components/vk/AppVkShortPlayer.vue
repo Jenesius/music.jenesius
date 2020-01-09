@@ -1,16 +1,18 @@
 <template>
     <div id = "short-vk-player">
-        <div class = "info-block">
+        <div class = "info-block" @click = "test">
             <div class = "avatar">
                 <img  alt = "avatar"
                     :src = "track.info.urlImage"
                 >
             </div>
             <div class = "title">
-                <p>{{ track.info.title }}</p>
+                    <p>{{ track.info.title }}</p>
             </div>
         </div>
-        <div class = "nav">
+        <div class = "nav"
+
+        >
             <div class = "active"
                 @click = "activate"
             >
@@ -50,6 +52,7 @@
         methods:{
             ...mapMutations({
                 setPositionIndex: 'vk/setPositionIndex',
+                setPositionPlayer: 'vk/setPositionPlayer',
             }),
             activate: function () {
                 Player.activate();
@@ -57,6 +60,10 @@
             next: function(){
                 Player.next();
                 this.setPositionIndex(Player.index);
+            },
+            test: function(){
+                this.$router.push('player');
+                this.setPositionPlayer(true);
             },
         }
     }
