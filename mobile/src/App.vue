@@ -18,7 +18,7 @@
       'view-vk': ViewVK,
       AppHeader},
     mounted() {
-      this.$refs.mainBlock.style.height = (window.innerHeight) + 'px';
+      //this.$refs.mainBlock.style.height = (window.innerHeight) + 'px';
     }
   }
 

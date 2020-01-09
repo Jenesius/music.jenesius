@@ -60,16 +60,18 @@
 
 <style scoped>
     .header{
-        height: 50px;
+
         width: 100%;
 
         background-color: var(--black3);
         padding: 7px 10px;
     }
     .header>div{
+
+        height: 30px;
+
         background-color: white;
         border-radius: 6px;
-        height: 100%;
         width: 100%;
         padding: 4px 0;
 
