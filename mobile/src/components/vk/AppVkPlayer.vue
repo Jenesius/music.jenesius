@@ -7,7 +7,12 @@
         ref="containerPlayer"
     >
         <div class = "space"></div>
-        <div class = "player">1</div>
+        <div class = "player">
+            <div class = "header"></div>
+            <div class = "trackImage"></div>
+            <div class = "trackTimeLine"></div>
+            <div class = "trackInfo"></div>
+        </div>
     </div>
 </template>
 
@@ -49,7 +54,7 @@
 
                 }else{
                     this.$refs.containerPlayer.scrollTo(0,0);
-                    this.timerFade = setTimeout(this.fadeOut, 250);
+                    this.timerFade = setTimeout(this.fadeOut, 350);
                 }
             },
             reScrollPage: function(){
