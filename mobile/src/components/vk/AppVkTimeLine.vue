@@ -8,7 +8,7 @@
         </div>
         <div class = "trackTime">
             <span>{{ currentTime }}</span>
-            <span>3:22</span>
+            <span>{{ customDurationTrack }}</span>
         </div>
     </div>
 </template>
@@ -20,6 +20,9 @@
 
     export default {
         name: "AppVkTimeLine",
+        props:{
+            durationTrack:String,
+        },
         data: function(){
             return {
                 inputTimeLine:Number,
@@ -30,12 +33,15 @@
             ...mapState({
                 idTimerLine: function (state) {
                     return state.vk.player.idTimerLine;
-                }
+                },
             }),
             backgroundRange: function(){
                 return {
                     background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine + 0.7 )+'%,#fff '+ (this.inputTimeLine + 0.3)+'%, #fff 100%)'
                 };
+            },
+            customDurationTrack: function () {
+                return Time(this.durationTrack).modifyDuration();
             }
 
         },

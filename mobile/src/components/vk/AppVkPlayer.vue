@@ -15,11 +15,13 @@
                 <div></div>
             </div>
             <div class = "trackTimeLine">
-                <app-vk-time-line/>
+                <app-vk-time-line
+                    :duration-track="track.info.duration"
+                />
             </div>
             <div class = "trackInfo">
-                <p class = "title">Там за кордоном</p>
-                <p class = "artist">Честный</p>
+                <p class = "title">{{ track.info.title }}</p>
+                <p class = "artist">{{ track.info.artist }}</p>
             </div>
             <div class = "trackFunction">
                 <div class = "navigation">
@@ -49,6 +51,7 @@
 <script>
     import {mapState, mapMutations} from 'vuex';
     import AppVkTimeLine from "./AppVkTimeLine";
+    import Player from "../../static/js/player";
 
     export default {
         name: "AppVkPlayer",
@@ -65,7 +68,10 @@
             ...mapState({
                 isPlayer:function (state) {
                     return state.vk.position.isPlayer;
-                }
+                },
+                track: function(state) {
+                    return Player.getTrack(state.vk.position.index);
+                },
             }),
         },
         methods:{
