@@ -8,8 +8,8 @@
              ref = vkOnline
         >
             <app-vk-track-list-elem
-                    v-for = "(elem, index) in list" :key="index" v-bind="elem"
-            ></app-vk-track-list-elem>
+                    v-for="(elem, index) in list" :key="index" v-bind="elem"
+            />
         </div>
         <div class = "vk-offline"
              ref = vkOffline
@@ -38,7 +38,6 @@
             return {
                 timer:Number,
                 scrollLeftEnd:Number,
-
             };
         },
         methods: {
@@ -47,19 +46,16 @@
             }),
             checkScroll: function(){
                 if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){
-                    /*OFFLINE*/
                     this.setPositionOnline(false);
                     this.$refs.containerMusicVk.scrollTo(innerWidth,0);
 
                 }else{
-                    /*ONLINE*/
                     this.setPositionOnline(true);
                     this.$refs.containerMusicVk.scrollTo(0,0);
                 }
             },
             reCheckScroll: function(){
                 clearTimeout(this.timer);
-                this.scrollTopEnd = this.$refs.containerMusicVk.scrollTop;
             },
             checkPosition: function () {
                 if (this.scrollLeftEnd === this.$refs.containerMusicVk.scrollLeft){
@@ -70,7 +66,9 @@
                 }
             },
         },
+
         watch: {
+            //Связываем toggle
             isOnline: function(newValue){
                 if(newValue){
                     this.$refs.containerMusicVk.scrollTo(0,0);
@@ -80,8 +78,6 @@
             }
         },
         components: {AppVkTrackListElem},
-        mounted() {
-        }
     }
 </script>
 

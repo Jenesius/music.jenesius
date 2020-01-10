@@ -1,22 +1,12 @@
 <template>
     <div id = "view-vk">
+        <app-vk-header/>
 
-        <app-vk-header
+        <app-vk-container-music/>
 
-        ></app-vk-header>
+        <app-vk-short-player/>
 
-        <app-vk-container-music
-
-        ></app-vk-container-music>
-
-
-
-        <app-vk-short-player
-
-        ></app-vk-short-player>
-
-        <app-vk-player></app-vk-player>
-
+        <app-vk-container-player/>
     </div>
 </template>
 
@@ -27,16 +17,15 @@
     import Api from '../static/js/api';
     import Player from "../static/js/player";
     import {mapMutations} from 'vuex';
-    import AppVkPlayer from "../components/vk/AppVkPlayer";
+    import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
+
 
     export default {
         name: "ViewVK",
         data: function(){
             return {};
         },
-
-        // eslint-disable-next-line vue/no-unused-components
-        components: {AppVkPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
+        components: {AppVkContainerPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
@@ -70,10 +59,9 @@
 
     overflow-x: scroll;
     scroll-behavior: smooth;
-    transition: 1s;
-
-
+    transition: var(--slow);
 }
+#view-vk>.container-music::-webkit-scrollbar { width: 0; height: 0}
 #view-vk>.container-music>div{
     height: 100%;
     width: 100%;
@@ -81,6 +69,4 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-    .vk-online{}
-    .vk-offline{}
 </style>

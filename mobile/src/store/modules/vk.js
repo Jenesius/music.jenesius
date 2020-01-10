@@ -1,4 +1,7 @@
 "use strict";
+
+import Player from '../../static/js/player';
+
 //init state
 const state = {
     userID:Number,
@@ -10,6 +13,7 @@ const state = {
     },
     player:{
         timerTimeLine:Number,
+        isActive: false,
     },
     music:{
         online:[],
@@ -30,6 +34,16 @@ const getters = {
 
             return true;
         })
+    },
+    getIsActive: function(state){
+
+        let src;
+        if(state.player.isActive){src = "/img/ico/audio/pause.svg"}
+            else{ src = "/img/ico/audio/play.svg"}
+        return {
+            isActive:state.player.isActive,
+            src:src,
+        };
     }
 };
 
@@ -38,8 +52,14 @@ const actions = {};
 
 //mutations
 const mutations = {
+    activatePlayer(state){
+        state.player.isActive = !state.player.isActive;
+    },
     setTimerTimeLine(state, idTimer){
         state.player.timerTimeLine = idTimer;
+    },
+    updatePositionIndex(state){
+        state.position.index = Player.index;
     },
     updateFilter(state, tmp){
         state.filterStr = tmp;

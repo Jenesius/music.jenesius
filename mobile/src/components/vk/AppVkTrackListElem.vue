@@ -45,12 +45,12 @@
         },
         methods:{
             ...mapMutations({
-                setPositionIndex: 'vk/setPositionIndex',
+                updatePositionIndex: 'vk/updatePositionIndex',
             }),
             setTrack: function () {
                 Player.setTrack(this.index);
 
-                this.setPositionIndex(this.index);
+                this.updatePositionIndex();
             }
         }
     }

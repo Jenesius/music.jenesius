@@ -7,7 +7,7 @@
                 >
             </div>
             <div class = "title">
-                    <p>{{ track.info.title }}</p>
+                <p>{{ track.info.title }}</p>
             </div>
         </div>
         <div class = "nav"
@@ -17,7 +17,9 @@
                 @click = "activate"
             >
                 <div>
-                    <img src = "./../../static/img/ico/audio/play.svg" alt = "active">
+                    <img  alt = "active"
+                        :src = "getIsActive.src"
+                    >
                 </div>
 
             </div>
@@ -35,7 +37,7 @@
 
 <script>
     import Player from "../../static/js/player";
-    import {mapState, mapMutations} from 'vuex';
+    import {mapState, mapMutations, mapGetters} from 'vuex';
 
     export default {
         name: "AppVkShortPlayer",
@@ -46,23 +48,27 @@
             ...mapState({
                 position: function(state){
                     return state.vk.position.index;
-                }
+                },
+            }),
+            ...mapGetters({
+                getIsActive: 'vk/getIsActive',
             }),
         },
         methods:{
             ...mapMutations({
-                setPositionIndex: 'vk/setPositionIndex',
+                updatePositionIndex: 'vk/updatePositionIndex',
                 setPositionPlayer: 'vk/setPositionPlayer',
+                activatePlayer: 'vk/activatePlayer'
             }),
             activate: function () {
                 Player.activate();
+                this.activatePlayer();
             },
             next: function(){
                 Player.next();
-                this.setPositionIndex(Player.index);
+                this.updatePositionIndex();
             },
             test: function(){
-                this.$router.push('player');
                 this.setPositionPlayer(true);
             },
         }

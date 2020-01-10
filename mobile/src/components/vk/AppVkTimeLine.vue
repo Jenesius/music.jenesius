@@ -2,8 +2,10 @@
     <div id = "vkTimeLine">
         <div class = "inputTime">
             <input type = "range"
-                v-model = "inputTimeLine"
-                v-bind:style = "backgroundRange"
+                v-model = "inputTimeLine" min = "0" max = "100" step = "0.5"
+                :style = "backgroundRange"
+                @touchstart = "onTouchStart"
+                @touchend = "onTouchEnd"
             >
         </div>
         <div class = "trackTime">
@@ -32,12 +34,15 @@
         computed: {
             ...mapState({
                 idTimerLine: function (state) {
-                    return state.vk.player.idTimerLine;
+                    return state.vk.player.timerTimeLine;
                 },
             }),
             backgroundRange: function(){
+                // eslint-disable-next-line no-console
+                console.log(this.inputTimeLine);
                 return {
-                    background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine + 0.7 )+'%,#fff '+ (this.inputTimeLine + 0.3)+'%, #fff 100%)'
+
+                    background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine*1.0 + 0.4 )+'%,#fff '+ (this.inputTimeLine*1.0)+'%, #fff 100%)'
                 };
             },
             customDurationTrack: function () {
@@ -50,13 +55,28 @@
                 setTimerTimeLine:'vk/setTimerTimeLine',
             }),
             updateTimer: function () {
+                this.inputTimeLine =  Player.track.currentTime / Player.track.duration * 100;
+
+                this.currentTime = Time(Player.track.currentTime).modifyDuration();
                 let tmp = setInterval(()=>{
+
+
                     this.inputTimeLine =  Player.track.currentTime / Player.track.duration * 100;
 
                     this.currentTime = Time(Player.track.currentTime).modifyDuration();
                 }, 1000);
                 this.setTimerTimeLine(tmp);
-            }
+            },
+            onTouchStart: function(){
+                clearInterval(this.idTimerLine);
+            },
+            onTouchEnd: function(){
+
+
+                Player.track.currentTime = this.durationTrack * this. inputTimeLine/ 100;
+
+                this.updateTimer();
+            },
         },
         mounted() {
             this.updateTimer();

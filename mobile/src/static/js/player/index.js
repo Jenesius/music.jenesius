@@ -14,7 +14,18 @@ class Player{
         this._list.set(list);
     }
     setTrack(pos) {
+        let trackActive = !this.track.paused;
+
+
+        this._pos = pos;
         this._track.set(this.getTrack(pos));
+
+        //Если трек был активен, то новый наследует его значене
+        if (trackActive){
+            this.play();
+        }
+
+
     }
     getTrack(pos) {
         if(this._list.length === 0){
@@ -47,10 +58,28 @@ class Player{
     }
 
     next(){
-        this._pos = this._pos + 1;
+
+
+
+        let pos = this._pos + 1;
+
+        this.setTrack(pos);
     }
     prev(){
-        this._pos = this._pos - 1;
+
+        //Если Время проигрывания трека < 5 секунд, трек начинается сначала,
+        //без перехода на предыдущий
+        if (this.track.currentTime > 10){
+            this.track.currentTime = 0;
+            return;
+        }
+
+        let pos = this._pos - 1;
+
+        this.setTrack(pos);
+    }
+    loop(){
+        this.track.loop = !this.track.loop;
     }
 
     get index(){

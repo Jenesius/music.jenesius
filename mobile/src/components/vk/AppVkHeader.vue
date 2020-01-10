@@ -60,30 +60,32 @@
 
 <style scoped>
     .header{
-
         width: 100%;
 
         background-color: var(--black3);
+
         padding: 7px 10px;
     }
     .header>div{
-
         height: 30px;
+        width: 100%;
+
+        display: flex;
 
         background-color: white;
         border-radius: 6px;
-        width: 100%;
-        padding: 4px 0;
 
-        display: flex;
+        padding: 4px 0;
     }
     .header>div>.block-search{
         height: 100%;
         width: calc(100% - 140px);
-        border-right:1px solid var(--gray3) ;
 
         display: flex;
         align-items: center;
+
+        border-right:1px solid var(--gray3) ;
+
         padding: 0 5px 0 0 ;
     }
     .header>div>.block-search>img{
@@ -113,7 +115,6 @@
         text-align: center;
 
         z-index: 1;
-
     }
     .header>div>.block-toggle>p{
         transition: 0.7s;
