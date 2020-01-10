@@ -38,10 +38,7 @@
                 },
             }),
             backgroundRange: function(){
-                // eslint-disable-next-line no-console
-                console.log(this.inputTimeLine);
                 return {
-
                     background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine*1.0 + 0.4 )+'%,#fff '+ (this.inputTimeLine*1.0)+'%, #fff 100%)'
                 };
             },
@@ -71,8 +68,6 @@
                 clearInterval(this.idTimerLine);
             },
             onTouchEnd: function(){
-
-
                 Player.track.currentTime = this.durationTrack * this. inputTimeLine/ 100;
 
                 this.updateTimer();
