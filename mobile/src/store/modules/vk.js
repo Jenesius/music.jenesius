@@ -24,11 +24,12 @@ const state = {
 //getters
 const getters = {
     getOnline(state){
+        let tmp = state.filterStr.toLowerCase();
         return state.music.online.filter((elem) => {
             if(state.filterStr === ""){
                 return true;
             }
-            if (elem.info.title.indexOf(state.filterStr) === -1 && elem.info.artist.indexOf(state.filterStr) === -1){
+            if (elem.info.title.toLowerCase().indexOf(tmp) === -1 && elem.info.artist.toLowerCase().indexOf(tmp) === -1){
                 return false;
             }
 
