@@ -13,6 +13,9 @@ class Player{
     setList(list) {
         this._list.set(list);
     }
+    addList(list) {
+        this._list.add(list);
+    }
     setTrack(pos) {
         let trackActive = !this.track.paused;
 
@@ -24,8 +27,6 @@ class Player{
         if (trackActive){
             this.play();
         }
-
-
     }
     getTrack(pos) {
         if(this._list.length === 0){

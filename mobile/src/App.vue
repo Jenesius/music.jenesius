@@ -1,5 +1,6 @@
 <template>
   <div  id="app" ref = "mainBlock">
+      <test></test>
       <app-header/>
       <div id = "main" >
 
@@ -12,10 +13,12 @@
 
 <script>
   import AppHeader from "./components/AppHeader";
+    import test from "./components/test/test";
 
   export default {
     components: {
-        AppHeader
+        AppHeader,
+        test
     },
   }
 </script>
@@ -34,5 +37,6 @@
   height: calc(100% - 44px);
   width: 100%;
   background-color: var(--black2);
+    z-index: 100;
 }
 </style>

@@ -5,6 +5,12 @@ import Player from '../../static/js/player';
 //init state
 const state = {
     userID:Number,
+    global:{
+        pages:{
+            count:Number,
+            current:Number,
+        },
+    },
     filterStr:"",
     position:{
         isOnline:Boolean,
@@ -53,6 +59,12 @@ const actions = {};
 
 //mutations
 const mutations = {
+    setPagesCount(state, count){
+        state.global.pages.count = count;
+    },
+    setCurrentPages(state, count){
+      state.global.pages.current = count;
+    },
     activatePlayer(state){
         state.player.isActive = !state.player.isActive;
     },
@@ -78,7 +90,7 @@ const mutations = {
         state.userID = id;
     },
     setOnlineMusic(state, list){
-        state.music.online = list;
+        state.music.online = state.music.online.concat(list);
     },
     setOfflineMusic(state, list){
         state.music.offline.concat(list);

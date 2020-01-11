@@ -2,7 +2,9 @@
     <div id = "view-vk">
         <app-vk-header/>
 
-        <app-vk-container-music/>
+        <app-vk-container-music
+            v-on:scrollDown = "addMusicOnline"
+        />
 
         <app-vk-short-player/>
 
@@ -16,9 +18,8 @@
     import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
     import Api from '../static/js/api';
     import Player from "../static/js/player";
-    import {mapMutations} from 'vuex';
+    import {mapState, mapMutations} from 'vuex';
     import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
-    import Cache from "../static/js/cache";
 
 
     export default {
@@ -31,24 +32,44 @@
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
                 setPositionIndex: 'vk/setPositionIndex',
+                setPagesCount: 'vk/setPagesCount',
+                setCurrentPages: 'vk/setCurrentPages',
+            }),
+            addMusicOnline: function(){
+
+                if (this.pages.count -1 > this.pages.current){
+                    Api.vk.getUserMusic(this.pages.current+1, this.countTrack)
+                        .then(e => {
+
+                            this.setCurrentPages(this.pages.current + 1);
+
+                            this.setOnlineMusic(e.songs);
+
+                            Player.addList(e.songs);
+                        })
+                }
+            }
+        },
+        computed:{
+            ...mapState({
+                pages: function(state){
+                    return state.vk.global.pages;
+                },
+                countTrack: function(state){
+                    return state.vk.music.online.length;
+                }
             }),
         },
         mounted() {
             Api.vk.getUserMusic().then(e => {
-                this.setOnlineMusic(e);
+                this.setOnlineMusic(e.songs);
                 this.setPositionIndex(0);
-                Player.setList(e);
+                Player.setList(e.songs, );
                 Player.setTrack(0);
 
+                this.setPagesCount(e.pagesCount);
+                this.setCurrentPages(0);
 
-                Cache.getMusicList({name: 'vk-1'})
-                .then(e => {
-
-
-                    Player.track.src = e[0].url;
-                    // eslint-disable-next-line no-console
-                    console.log(Player.track);
-                })
             })
         }
     }

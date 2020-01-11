@@ -6,6 +6,7 @@
     >
         <div class = "vk-online"
              ref = vkOnline
+             v-on:scroll = "scrollOnlineBlock"
         >
             <app-vk-track-list-elem
                     v-for="(elem, index) in list" :key="index" v-bind="elem"
@@ -43,6 +44,7 @@
         methods: {
             ...mapMutations({
                 setPositionOnline: 'vk/setPositionOnline',
+                setMessage:'test/setMessage',
             }),
             checkScroll: function(){
                 if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){
@@ -58,6 +60,7 @@
                 clearTimeout(this.timer);
             },
             checkPosition: function () {
+
                 if (this.scrollLeftEnd === this.$refs.containerMusicVk.scrollLeft){
                     this.checkScroll();
                 }else{
@@ -65,6 +68,14 @@
                     this.timer = setTimeout(this.checkPosition, 70);
                 }
             },
+            scrollOnlineBlock: function(){
+
+                this.setMessage((this.$refs.vkOnline.scrollTop + this.$refs.vkOnline.clientHeight+0.7 ) + " " + this.$refs.vkOnline.scrollHeight);
+
+                if ((this.$refs.vkOnline.scrollTop + this.$refs.vkOnline.clientHeight +0.7) > this.$refs.vkOnline.scrollHeight ){
+                    this.$emit('scrollDown');
+                }
+            }
         },
 
         watch: {
