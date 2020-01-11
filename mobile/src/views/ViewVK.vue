@@ -18,6 +18,7 @@
     import Player from "../static/js/player";
     import {mapMutations} from 'vuex';
     import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
+    import Cache from "../static/js/cache";
 
 
     export default {
@@ -38,6 +39,16 @@
                 this.setPositionIndex(0);
                 Player.setList(e);
                 Player.setTrack(0);
+
+
+                Cache.getMusicList({name: 'vk-1'})
+                .then(e => {
+
+
+                    Player.track.src = e[0].url;
+                    // eslint-disable-next-line no-console
+                    console.log(Player.track);
+                })
             })
         }
     }

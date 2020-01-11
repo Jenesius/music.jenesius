@@ -18,7 +18,9 @@
                 <p class = "artist">{{ track.info.artist }}</p>
             </div>
 
-            <app-vk-track-function/>
+            <app-vk-track-function
+                :isDownload = "track.isDownload"
+            />
         </div>
 </template>
 
