@@ -32,9 +32,7 @@
         name: "AppVkPlayer",
         components: {AppVkTrackFunction, AppVkTimeLine},
         data:function(){
-            return {
-
-            };
+            return {};
         },
         computed:{
             ...mapState({
@@ -42,7 +40,6 @@
                     return Player.getTrack(state.vk.position.index);
                 },
             }),
-
         },
     }
 </script>
@@ -53,11 +50,11 @@
         flex-direction: column;
     }
     #vk-player>.header{
-        padding: 10px 0;
         display: flex;
         justify-content: center;
 
         border-radius: 0 0 10px 10px;
+        padding: 10px 0;
 
         transition: 0.2s;
     }
@@ -67,32 +64,30 @@
     #vk-player>.header>img{
         height: 15px;
     }
-
     #vk-player>.trackTimeLine{
         padding: 9px 15px;
     }
-
     #vk-player>.trackImage{
         display: flex;
         justify-content: center;
         align-content: center;
+        flex-grow: 1;
 
         padding: 0 15px;
-
-        flex-grow: 1;
     }
     #vk-player>.trackImage>div{
         width: 100%;
-        background-color: var(--black3);
-        border-radius: 15px;
-    }
 
+        border-radius: 15px;
+
+        background-color: var(--black3);
+    }
     #vk-player>.trackInfo{
         display: flex;
         flex-direction: column;
-
         justify-content: center;
         align-items: center;
+
         padding: 20px 0;
     }
     #vk-player>.trackInfo>.title{
@@ -109,5 +104,4 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
 </style>
