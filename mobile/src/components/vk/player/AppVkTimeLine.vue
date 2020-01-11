@@ -17,8 +17,8 @@
 
 <script>
     import {mapState, mapMutations} from 'vuex';
-    import Player from '../../static/js/player';
-    import Time from "../../static/js/default/timeModify";
+    import Player from '../../../static/js/player';
+    import Time from "../../../static/js/default/timeModify";
 
     export default {
         name: "AppVkTimeLine",
