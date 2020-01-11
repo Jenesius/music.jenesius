@@ -1,22 +1,14 @@
 <template>
     <div id = "view-vk">
-
-        <app-vk-header
-
-        ></app-vk-header>
+        <app-vk-header/>
 
         <app-vk-container-music
+            v-on:scrollDown = "addMusicOnline"
+        />
 
-        ></app-vk-container-music>
+        <app-vk-short-player/>
 
-
-
-        <app-vk-short-player
-
-        ></app-vk-short-player>
-
-        <app-vk-player></app-vk-player>
-
+        <app-vk-container-player/>
     </div>
 </template>
 
@@ -26,29 +18,58 @@
     import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
     import Api from '../static/js/api';
     import Player from "../static/js/player";
-    import {mapMutations} from 'vuex';
-    import AppVkPlayer from "../components/vk/AppVkPlayer";
+    import {mapState, mapMutations} from 'vuex';
+    import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
+
 
     export default {
         name: "ViewVK",
         data: function(){
             return {};
         },
-
-        // eslint-disable-next-line vue/no-unused-components
-        components: {AppVkPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
+        components: {AppVkContainerPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
                 setPositionIndex: 'vk/setPositionIndex',
+                setPagesCount: 'vk/setPagesCount',
+                setCurrentPages: 'vk/setCurrentPages',
+            }),
+            addMusicOnline: function(){
+
+                if (this.pages.count -1 > this.pages.current){
+                    Api.vk.getUserMusic(this.pages.current+1, this.countTrack)
+                        .then(e => {
+
+                            this.setCurrentPages(this.pages.current + 1);
+
+                            this.setOnlineMusic(e.songs);
+
+                            Player.addList(e.songs);
+                        })
+                }
+            }
+        },
+        computed:{
+            ...mapState({
+                pages: function(state){
+                    return state.vk.global.pages;
+                },
+                countTrack: function(state){
+                    return state.vk.music.online.length;
+                }
             }),
         },
         mounted() {
             Api.vk.getUserMusic().then(e => {
-                this.setOnlineMusic(e);
+                this.setOnlineMusic(e.songs);
                 this.setPositionIndex(0);
-                Player.setList(e);
+                Player.setList(e.songs, );
                 Player.setTrack(0);
+
+                this.setPagesCount(e.pagesCount);
+                this.setCurrentPages(0);
+
             })
         }
     }
@@ -70,10 +91,9 @@
 
     overflow-x: scroll;
     scroll-behavior: smooth;
-    transition: 1s;
-
-
+    transition: var(--slow);
 }
+#view-vk>.container-music::-webkit-scrollbar { width: 0; height: 0}
 #view-vk>.container-music>div{
     height: 100%;
     width: 100%;
@@ -81,6 +101,4 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-    .vk-online{}
-    .vk-offline{}
 </style>

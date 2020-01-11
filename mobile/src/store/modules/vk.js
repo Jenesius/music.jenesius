@@ -1,14 +1,26 @@
 "use strict";
+
+import Player from '../../static/js/player';
+
 //init state
 const state = {
     userID:Number,
+    global:{
+        pages:{
+            count:Number,
+            current:Number,
+        },
+    },
     filterStr:"",
     position:{
         isOnline:Boolean,
         index:Number,
         isPlayer:false,
     },
-
+    player:{
+        timerTimeLine:Number,
+        isActive: false,
+    },
     music:{
         online:[],
         offline:[],
@@ -18,16 +30,27 @@ const state = {
 //getters
 const getters = {
     getOnline(state){
+        let tmp = state.filterStr.toLowerCase();
         return state.music.online.filter((elem) => {
             if(state.filterStr === ""){
                 return true;
             }
-            if (elem.info.title.indexOf(state.filterStr) === -1 && elem.info.artist.indexOf(state.filterStr) === -1){
+            if (elem.info.title.toLowerCase().indexOf(tmp) === -1 && elem.info.artist.toLowerCase().indexOf(tmp) === -1){
                 return false;
             }
 
             return true;
         })
+    },
+    getIsActive: function(state){
+
+        let src;
+        if(state.player.isActive){src = "/img/ico/audio/pause.svg"}
+            else{ src = "/img/ico/audio/play.svg"}
+        return {
+            isActive:state.player.isActive,
+            src:src,
+        };
     }
 };
 
@@ -36,7 +59,21 @@ const actions = {};
 
 //mutations
 const mutations = {
-
+    setPagesCount(state, count){
+        state.global.pages.count = count;
+    },
+    setCurrentPages(state, count){
+      state.global.pages.current = count;
+    },
+    activatePlayer(state){
+        state.player.isActive = !state.player.isActive;
+    },
+    setTimerTimeLine(state, idTimer){
+        state.player.timerTimeLine = idTimer;
+    },
+    updatePositionIndex(state){
+        state.position.index = Player.index;
+    },
     updateFilter(state, tmp){
         state.filterStr = tmp;
     },
@@ -53,7 +90,7 @@ const mutations = {
         state.userID = id;
     },
     setOnlineMusic(state, list){
-        state.music.online = list;
+        state.music.online = state.music.online.concat(list);
     },
     setOfflineMusic(state, list){
         state.music.offline.concat(list);

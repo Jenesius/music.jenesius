@@ -9,6 +9,9 @@ export default class AudioList{
     set (list){
         this._arr = list;
     }
+    add (list){
+        this._arr = this._arr.concat(list);
+    }
     get (){
         return this._arr;
     }

@@ -1,15 +1,21 @@
 
 <template>
-    <div id = "test"></div>
+    <div id = "test">{{message}}</div>
 </template>
 
 <script>
-
+    import {mapState} from 'vuex';
 
     export default {
         name: "test",
         computed: {
-
+            ...mapState({
+                message:function(state){
+                    return state.test.message;
+                }
+            }),
+        },
+        methods:{
         },
         mounted() {
 
@@ -22,10 +28,12 @@
     left:0;
     top:0;
 
-    height: 100%;
+    height: 10%;
     width: 100%;
 
     position: absolute;
 
+    z-index: 0;
+    color:white;
 }
 </style>
