@@ -9,6 +9,12 @@ class Player{
         this._list = new List();
 
         this._pos = 0;
+
+
+        this._track.addEventListener('ended', () => {
+            this.next();
+            this.play();
+        })
     }
     setList(list) {
         this._list.set(list);
