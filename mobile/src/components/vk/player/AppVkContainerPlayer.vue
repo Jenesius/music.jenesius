@@ -106,7 +106,7 @@
 
         overflow-y: scroll;
         scroll-behavior: smooth;
-        transition: var(--slow);
+        transition: var(--medium);
     }
     #vk-container-player::-webkit-scrollbar{
         width: 0;

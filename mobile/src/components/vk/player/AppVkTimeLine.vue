@@ -32,7 +32,6 @@
             }
         },
         computed: {
-
             backgroundRange: function(){
                 return {
                     background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine*1.0 + 0.4 )+'%,#fff '+ (this.inputTimeLine*1.0)+'%, #fff 100%)'
@@ -46,7 +45,6 @@
                     return Time(state.player.currentTime).modifyDuration();
                 }
             }),
-
         },
         methods:{
             updateTimer: function () {
