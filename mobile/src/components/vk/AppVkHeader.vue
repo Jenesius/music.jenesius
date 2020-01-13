@@ -62,72 +62,78 @@
     .header{
         width: 100%;
 
-        background-color: var(--black3);
-
         padding: 7px 10px;
+
+        background-color: var(--black3);
     }
     .header>div{
+        display: flex;
+
         height: 30px;
         width: 100%;
 
-        display: flex;
+        border-radius: 6px;
+        padding: 4px 0;
 
         background-color: white;
-        border-radius: 6px;
-
-        padding: 4px 0;
     }
     .header>div>.block-search{
-        height: 100%;
-        width: calc(100% - 140px);
-
         display: flex;
         align-items: center;
 
-        border-right:1px solid var(--gray3) ;
+        height: 100%;
+        width: calc(100% - 140px);
 
+        border-right:1px solid var(--gray3) ;
         padding: 0 5px 0 0 ;
     }
     .header>div>.block-search>img{
         height: 80%;
 
-        padding: 0 9px 0 9px;
+        padding: 0 9px;
     }
     .header>div>.block-search>input{
         height: 100%;
         width: 100%;
 
         border: 0;
+
         outline: none;
     }
     .header>div>.block-toggle{
         display: flex;
         justify-content: space-between;
-        font-size: 11px;
+        align-items: center;
+
+        position: relative;
 
         width: 135px;
+
         margin-left: 5px;
-        align-items: center;
-        position: relative;
+
+        font-size: 11px;
     }
     .header>div>.block-toggle>p{
         flex-grow: 1;
-        text-align: center;
 
         z-index: 1;
+
+        text-align: center;
     }
     .header>div>.block-toggle>p{
-        transition: 0.7s;
+        transition: var(--slow);
     }
     .header>div>.block-toggle>div{
         position: absolute;
+
         height: 100%;
         width: 46%;
-        background-color: var(--main);
 
         border-radius: 6px;
 
-        transition: 0.7s;
+        background-color: var(--main);
+
+        transition: var(--slow);
     }
     .header>div>.block-toggle>.on{
         color:var(--white1);

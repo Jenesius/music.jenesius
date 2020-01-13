@@ -102,7 +102,7 @@
         outline: none;
 
         -webkit-appearance: none;
-        transition:.3s;
+        transition:var(--medium);
     }
     #vkTimeLine>.trackTime{
         display: flex;

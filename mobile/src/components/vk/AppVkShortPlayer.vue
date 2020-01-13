@@ -73,23 +73,21 @@
 
 <style scoped>
 #short-vk-player{
+    display: flex;
+
     height: 62px;
     width: 100%;
-
-    display: flex;
 
     background-color: var(--black3);
 }
 #short-vk-player>div{
     display: flex;
 }
-
 #short-vk-player>.info-block{
-    flex-grow: 1;
+    width: calc(100% - 120px);
 }
 #short-vk-player>.info-block>.avatar{
     padding: 8px 10px;
-
 }
 #short-vk-player>.info-block>.avatar>img{
     height: 46px;
@@ -101,8 +99,15 @@
     align-items: center;
     display: flex;
 
+    width: calc(100% - 66px);
+
     color:var(--white1);
     font-size: 15px;
+}
+#short-vk-player>.info-block>.title>p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #short-vk-player>.nav{
     width: 120px;
@@ -111,35 +116,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex-grow: 1;
 }
 #short-vk-player>.nav>div>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     height: 37px;
     width: 37px;
 
     border-radius: 50%;
-    transition: 0.3s;
 
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: var(--medium);
 }
-#short-vk-player>.nav>div>div:active{
+#short-vk-player>.nav>div:active>div{
     background-color: var(--black4);
 }
-#short-vk-player>.nav>.next>div:active>img{
+#short-vk-player>.nav>.next:active>div>img{
     transform: translateX(4px);
 }
 #short-vk-player>.nav>.active img{
-
     height: 20px;
-
 }
-
 #short-vk-player>.nav>.next img{
     height: 20px;
-    transition: 0.2s;
+
+    transition: var(--medium);
 }
 </style>

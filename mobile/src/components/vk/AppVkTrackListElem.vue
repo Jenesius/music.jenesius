@@ -72,25 +72,24 @@
     display: flex;
     align-items: center;
 
-    padding: 0 10px;
     width: 66px;
+
+    padding: 0 10px;
 }
 .track-vk-elem>.image>img{
     height: 46px;
     width: 46px;
 
     border-radius: 6px;
-
 }
 .track-vk-elem>.info{
     display: flex;
+    justify-content: center;
+    flex-direction: column;
     flex-grow: 1;
 
-    justify-content: center;
-
-    flex-direction: column;
-
     width: calc(100% - 112px);
+
     padding-right: 15px;
 }
 .track-vk-elem>.info>p{
@@ -107,10 +106,12 @@
     font-size: 12px;
 }
 .track-vk-elem>.time{
-    width: 46px;
     display: flex;
     align-items: center;
     justify-content: right;
+
+    width: 46px;
+
     padding: 0 10px;
 
     color:var(--gray1);

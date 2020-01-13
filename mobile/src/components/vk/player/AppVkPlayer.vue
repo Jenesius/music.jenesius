@@ -58,7 +58,7 @@
         border-radius: 0 0 10px 10px;
         padding: 10px 0;
 
-        transition: 0.2s;
+        transition: var(--medium);
     }
     #vk-player>.header:active{
         background-color: var(--black3);
