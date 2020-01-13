@@ -16,8 +16,7 @@
 </template>
 
 <script>
-    // eslint-disable-next-line no-unused-vars
-    import {mapState, mapMutations} from 'vuex';
+    import {mapState} from 'vuex';
     import Player from '../../../static/js/player';
     import Time from "../../../static/js/default/timeModify";
 
@@ -55,7 +54,7 @@
                 this.idTimer = setInterval(()=>{
                     this.inputTimeLine =  (Player.currentTime / Player.track.duration * 100) || 0;
                 }, 1000);
-                
+
             },
             onTouchStart: function(){
                 clearInterval(this.idTimer);
@@ -78,30 +77,37 @@
     }
     #vkTimeLine>.inputTime{
         display: flex;
+
         padding: 7px 0 4px 0;
     }
     #vkTimeLine>.inputTime>input{
         width: 100%;
-        -webkit-appearance: none;
-        border-radius:2px;
         height:2px;
+
+        border-radius:2px;
+
         outline : none;
 
+        -webkit-appearance: none;
     }
     #vkTimeLine>.inputTime>input::-webkit-slider-thumb{
-        -webkit-appearance: none;
         width:13px;
         height:13px;
-        background:var(--main);
+
         border-radius:50%;
+
+        background:var(--main);
         cursor:pointer;
-        transition:.3s;
 
         outline: none;
+
+        -webkit-appearance: none;
+        transition:.3s;
     }
     #vkTimeLine>.trackTime{
         display: flex;
         justify-content: space-between;
+
         color:var(--gray1);
         font-size: 12px;
     }
