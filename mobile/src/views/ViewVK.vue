@@ -83,22 +83,4 @@
     display: flex;
     flex-direction: column;
 }
-#view-vk>.container-music{
-    background-color: var(--black2);
-    min-width: 100%;
-    display: flex;
-    height: 100%;
-
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    transition: var(--slow);
-}
-#view-vk>.container-music::-webkit-scrollbar { width: 0; height: 0}
-#view-vk>.container-music>div{
-    height: 100%;
-    width: 100%;
-    min-width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
 </style>
