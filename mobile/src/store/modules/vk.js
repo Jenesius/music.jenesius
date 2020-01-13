@@ -1,4 +1,4 @@
-"use strict";
+ "use strict";
 
 import Player from '../../static/js/player';
 
@@ -14,12 +14,7 @@ const state = {
     filterStr:"",
     position:{
         isOnline:Boolean,
-        index:Number,
         isPlayer:false,
-    },
-    player:{
-        timerTimeLine:Number,
-        isActive: false,
     },
     music:{
         online:[],

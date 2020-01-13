@@ -18,7 +18,7 @@
             >
                 <div>
                     <img  alt = "active"
-                        :src = "getIsActive.src"
+                        :src = "srcIsActive"
                     >
                 </div>
 
@@ -47,26 +47,22 @@
             },
             ...mapState({
                 position: function(state){
-                    return state.vk.position.index;
+                    return state.player.position;
                 },
             }),
             ...mapGetters({
-                getIsActive: 'vk/getIsActive',
+                srcIsActive: 'player/srcIsActive',
             }),
         },
         methods:{
             ...mapMutations({
-                updatePositionIndex: 'vk/updatePositionIndex',
                 setPositionPlayer: 'vk/setPositionPlayer',
-                activatePlayer: 'vk/activatePlayer'
             }),
             activate: function () {
                 Player.activate();
-                this.activatePlayer();
             },
             next: function(){
                 Player.next();
-                this.updatePositionIndex();
             },
             test: function(){
                 this.setPositionPlayer(true);

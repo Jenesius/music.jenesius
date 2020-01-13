@@ -39,7 +39,7 @@
         computed:{
             ...mapState({
                 track: function(state) {
-                    return Player.getTrack(state.vk.position.index);
+                    return Player.getTrack(state.player.position);
                 },
             }),
         },
