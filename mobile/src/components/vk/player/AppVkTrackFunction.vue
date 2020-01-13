@@ -8,17 +8,17 @@
                 <div class = "prev"
                      v-on:click = "prevTrack"
                 >
-                    <img src = "../../../static/img/ico/audio/prev.svg">
+                    <img src = "../../../static/img/ico/audio/prev.svg" alt = "Previous track">
                 </div>
                 <div class = "activate"
                      v-on:click = "clickActivate"
                 >
-                    <img :src = "srcIsActive">
+                    <img :src = "srcIsActive" alt = "Activate">
                 </div>
                 <div class = "next"
                      v-on:click = "nextTrack"
                 >
-                    <img src = "../../../static/img/ico/audio/next.svg">
+                    <img src = "../../../static/img/ico/audio/next.svg"  alt = "Next track">
                 </div>
             </div>
 
@@ -29,13 +29,13 @@
             <div class = "random sub-block"
                  v-on:click = "randomTrack"
             >
-                <img src = "../../../static/img/ico/arrow/random.svg">
+                <img src = "../../../static/img/ico/arrow/random.svg"  alt = "Random mod">
             </div>
             <div class = "loop sub-block"
                  v-on:click = "loopTrack"
                  :class = "{active: loop}"
             >
-                <img src = "../../../static/img/ico/arrow/loop.svg">
+                <img src = "../../../static/img/ico/arrow/loop.svg" alt = "Loop mod">
             </div>
         </div>
     </div>
@@ -143,7 +143,7 @@
         display: flex;
         justify-content: space-between;
 
-        padding: 10px 10px
+        padding: 10px;
     }
     #vk-player-function>.func-2>.sub-block{
         display: flex;

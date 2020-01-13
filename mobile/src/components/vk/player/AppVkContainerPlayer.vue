@@ -96,24 +96,26 @@
 
 <style scoped>
     #vk-container-player{
-        height: 100%;
-        width: 100%;
-
+        position: absolute;
         left: 0;
         top: 0;
-
-        position: absolute;
-
         z-index: 20;
+
+        height: 100%;
+        width: 100%;
 
         overflow-y: scroll;
         scroll-behavior: smooth;
         transition: var(--slow);
     }
-    #vk-container-player::-webkit-scrollbar { width: 0; height: 0}
+    #vk-container-player::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+    }
     #vk-container-player>div{
         height: 100%;
         max-width: 100%;
+
         background-color: var(--black2);
     }
 </style>
