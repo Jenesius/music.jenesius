@@ -1,7 +1,7 @@
 <template>
-    <div class = "container-music"
-         v-on:touchend = "checkPosition"
-         v-on:touchstart = "reCheckScroll"
+    <div id = "vk-container-music"
+         v-on:touchend.passive = "checkPosition"
+         v-on:touchstart.passive = "reCheckScroll"
          ref = "containerMusicVk"
     >
         <div class = "vk-online"
@@ -38,7 +38,7 @@
         data: function(){
             return {
                 timer:Number,
-                scrollLeftEnd:Number,
+                scrollLeftEnd:0,
             };
         },
         methods: {
@@ -60,7 +60,6 @@
                 clearTimeout(this.timer);
             },
             checkPosition: function () {
-
                 if (this.scrollLeftEnd === this.$refs.containerMusicVk.scrollLeft){
                     this.checkScroll();
                 }else{
@@ -70,14 +69,11 @@
             },
             scrollOnlineBlock: function(){
 
-                this.setMessage((this.$refs.vkOnline.scrollTop + this.$refs.vkOnline.clientHeight+0.7 ) + " " + this.$refs.vkOnline.scrollHeight);
-
                 if ((this.$refs.vkOnline.scrollTop + this.$refs.vkOnline.clientHeight +0.7) > this.$refs.vkOnline.scrollHeight ){
                     this.$emit('scrollDown');
                 }
             }
         },
-
         watch: {
             //Связываем toggle
             isOnline: function(newValue){
@@ -92,6 +88,30 @@
     }
 </script>
 
-<style scoped>
+<style>
+    #vk-container-music{
+        display: flex;
 
+        height: 100%;
+        min-width: 100%;
+
+        background-color: var(--black2);
+
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+
+        transition: var(--slow);
+    }
+    #vk-container-music::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+    }
+    #vk-container-music>div{
+        height: 100%;
+        width: 100%;
+        min-width: 100%;
+
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
 </style>
