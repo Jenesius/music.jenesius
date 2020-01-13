@@ -2,20 +2,21 @@
     <div id = "vkTimeLine">
         <div class = "inputTime">
             <input type = "range"
-                v-model = "inputTimeLine" min = "0" max = "100" step = "0.5"
+                v-model = "inputTimeLine" min = "0" max = "100" step = "0.5" value="0"
                 :style = "backgroundRange"
                 @touchstart = "onTouchStart"
                 @touchend = "onTouchEnd"
             >
         </div>
         <div class = "trackTime">
-            <span>{{ currentTime }}</span>
+            <span>{{ customCurrentTime }}</span>
             <span>{{ customDurationTrack }}</span>
         </div>
     </div>
 </template>
 
 <script>
+    // eslint-disable-next-line no-unused-vars
     import {mapState, mapMutations} from 'vuex';
     import Player from '../../../static/js/player';
     import Time from "../../../static/js/default/timeModify";
@@ -28,15 +29,11 @@
         data: function(){
             return {
                 inputTimeLine:Number,
-                currentTime:"0:00"
+                idTimer:Number,
             }
         },
         computed: {
-            ...mapState({
-                idTimerLine: function (state) {
-                    return state.vk.player.timerTimeLine;
-                },
-            }),
+
             backgroundRange: function(){
                 return {
                     background:'-webkit-linear-gradient(left ,var(--main) 0%,var(--main) '+ (this.inputTimeLine*1.0 + 0.4 )+'%,#fff '+ (this.inputTimeLine*1.0)+'%, #fff 100%)'
@@ -44,32 +41,27 @@
             },
             customDurationTrack: function () {
                 return Time(this.durationTrack).modifyDuration();
-            }
+            },
+            ...mapState({
+                customCurrentTime: function(state){
+                    return Time(state.player.currentTime).modifyDuration();
+                }
+            }),
 
         },
         methods:{
-            ...mapMutations({
-                setTimerTimeLine:'vk/setTimerTimeLine',
-            }),
             updateTimer: function () {
-                this.inputTimeLine =  Player.track.currentTime / Player.track.duration * 100;
-
-                this.currentTime = Time(Player.track.currentTime).modifyDuration();
-                let tmp = setInterval(()=>{
-
-
-                    this.inputTimeLine =  Player.track.currentTime / Player.track.duration * 100;
-
-                    this.currentTime = Time(Player.track.currentTime).modifyDuration();
+                this.inputTimeLine =  (Player.currentTime / Player.track.duration * 100) || 0;
+                this.idTimer = setInterval(()=>{
+                    this.inputTimeLine =  (Player.currentTime / Player.track.duration * 100) || 0;
                 }, 1000);
-                this.setTimerTimeLine(tmp);
+                
             },
             onTouchStart: function(){
-                clearInterval(this.idTimerLine);
+                clearInterval(this.idTimer);
             },
             onTouchEnd: function(){
-                Player.track.currentTime = this.durationTrack * this. inputTimeLine/ 100;
-
+                Player.currentTime = this.durationTrack * this.inputTimeLine/ 100;
                 this.updateTimer();
             },
         },

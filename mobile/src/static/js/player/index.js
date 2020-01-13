@@ -2,6 +2,8 @@
 import Track from "./Track.js";
 import List from "./List.js";
 
+import controller from "./controller";
+
 class Player{
 
     constructor(){
@@ -11,10 +13,21 @@ class Player{
         this._pos = 0;
 
 
-        this._track.addEventListener('ended', () => {
+        this.track.addEventListener('ended', () => {
             this.next();
             this.play();
+        });
+        this.track.addEventListener('pause', () => {
+
+            controller.setActivate(!this.track.paused);
+        });
+        this.track.addEventListener('play', () => {
+            controller.setActivate(!this.track.paused);
+        });
+        this.track.addEventListener('timeupdate', () => {
+            controller.setCurrentTime(this.currentTime);
         })
+
     }
     setList(list) {
         this._list.set(list);
@@ -22,11 +35,23 @@ class Player{
     addList(list) {
         this._list.add(list);
     }
+
+    get position(){
+        return this._pos;
+    }
+    set position(value){
+        this._pos = value;
+
+        controller.setPosition(this.position);
+    }
+
+
     setTrack(pos) {
         let trackActive = !this.track.paused;
 
 
-        this._pos = pos;
+        this.position = pos;
+
         this._track.set(this.getTrack(pos));
 
         //Если трек был активен, то новый наследует его значене
@@ -68,7 +93,7 @@ class Player{
 
 
 
-        let pos = this._pos + 1;
+        let pos = this.position + 1;
 
         this.setTrack(pos);
     }
@@ -76,12 +101,12 @@ class Player{
 
         //Если Время проигрывания трека < 5 секунд, трек начинается сначала,
         //без перехода на предыдущий
-        if (this.track.currentTime > 10){
-            this.track.currentTime = 0;
+        if (this.currentTime > 10){
+            this.currentTime = 0;
             return;
         }
 
-        let pos = this._pos - 1;
+        let pos = this.position - 1;
 
         this.setTrack(pos);
     }
@@ -89,8 +114,12 @@ class Player{
         this.track.loop = !this.track.loop;
     }
 
-    get index(){
-        return this._pos;
+    set currentTime(time){
+        this.track.currentTime = time;
     }
+    get currentTime(){
+        return this.track.currentTime;
+    }
+
 }
 export default new Player();
