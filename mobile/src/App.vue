@@ -1,9 +1,9 @@
 <template>
   <div  id="app" ref = "mainBlock">
-      <test></test>
+      <test/>
       <app-header/>
       <div id = "main" >
-
+           <!-- <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code">13</a>-->
           <router-view>
 
           </router-view>
@@ -22,8 +22,12 @@
     },
   }
 </script>
-
+<style src='./static/css/default/app.css'></style>
 <style>
+
+
+
+
 *{
   --header:44px;
   --main-block:calc(100% - 44px);

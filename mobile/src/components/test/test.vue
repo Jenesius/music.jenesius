@@ -28,7 +28,7 @@
     left:0;
     top:0;
 
-    height: 10%;
+    height: 0%;
     width: 100%;
 
     position: absolute;

@@ -1,6 +1,7 @@
  "use strict";
 
 import Player from '../../static/js/player';
+import Router from '../../router';
 
 //init state
 const state = {
@@ -74,6 +75,13 @@ const mutations = {
     },
     setPositionPlayer(state, tmp){
         state.position.isPlayer = tmp;
+
+        if (tmp === true){
+            Router.push('/vk/player');
+        }else{
+            Router.back();
+        }
+
     },
     setPositionOnline(state, tmp){
       state.position.isOnline = tmp;

@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta  name="viewport"  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel = "stylesheet" href = "./css/default/app.css">
 
     <meta name="theme-color" content="#212121">
     <title>Jenesius Music</title>
@@ -16,5 +15,11 @@
     </noscript>
     <div id="app"></div>
 
+
+  <script>
+    if (window.location.pathname === '/vk/player'){
+      window.location = window.origin + '/vk';
+    }
+  </script>
   </body>
 </html>

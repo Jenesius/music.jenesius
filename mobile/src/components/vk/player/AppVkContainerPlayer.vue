@@ -1,6 +1,6 @@
 <template>
     <div id = "vk-container-player"
-         v-show="isPlayer"
+
          v-on:touchend = "checkPosition"
          v-on:touchstart = "reScrollPage"
          v-on:scroll="checkScroll"
@@ -28,7 +28,6 @@
                 timer:Number,
                 scrollTopEnd:Number,
 
-                isFading: false,
                 opacitySpace:0.1,
             };
         },
@@ -42,6 +41,7 @@
         methods:{
             ...mapMutations({
                 setPositionPlayer: 'vk/setPositionPlayer',
+                setMessage: 'test/setMessage',
             }),
             checkPosition: function () {
                 if (this.scrollTopEnd === this.$refs.containerPlayer.scrollTop){
@@ -64,21 +64,18 @@
                 this.$refs.containerPlayer.scrollTo(0,innerHeight);
             },
             fadeOut: function(){
-                this.isFading = true;
                 this.$refs.containerPlayer.scrollTo(0,0);
             },
             checkScroll: function(){
-                let tmp = this.$refs.containerPlayer.scrollTop;
+                let tmp = Math.round(this.$refs.containerPlayer.scrollTop);
 
                 this.opacitySpace = tmp/innerHeight;
 
-                if (this.isFading){
-                    if(tmp === 0){
-                        this.setPositionPlayer(false);
-                    }
-                    if(tmp === innerHeight){
-                        this.setPositionPlayer(true);
-                    }
+                if(tmp === 0){
+                    this.setPositionPlayer(false);
+                }
+                if(tmp === innerHeight){
+                    this.setPositionPlayer(true);
                 }
             },
         },
@@ -90,6 +87,20 @@
                     setTimeout(this.fadeOut, 50);
                 }
             },
+        },
+        mounted() {
+            this.fadeIn();
+        },
+
+        beforeRouteLeave (to, from, next) {
+
+            if(Math.round(this.$refs.containerPlayer.scrollTop) === innerHeight){
+                next(false);
+                this.fadeOut();
+            }else{
+                next();
+            }
+
         }
     }
 </script>

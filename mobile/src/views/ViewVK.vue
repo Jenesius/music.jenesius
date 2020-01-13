@@ -8,7 +8,9 @@
 
         <app-vk-short-player/>
 
-        <app-vk-container-player/>
+
+
+        <router-view></router-view>
     </div>
 </template>
 
@@ -19,7 +21,7 @@
     import Api from '../static/js/api';
     import Player from "../static/js/player";
     import {mapState, mapMutations} from 'vuex';
-    import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
+
 
 
     export default {
@@ -27,7 +29,7 @@
         data: function(){
             return {};
         },
-        components: {AppVkContainerPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
+        components: {AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
