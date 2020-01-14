@@ -16,7 +16,7 @@
             <button class = "button button-vk button-link button-img">
                 <img src = "../../static/img/logo/vk/vk-back.svg" alt = "vk logo">
                 <p>Войти через ВК</p>
-                <a href = "#"></a>
+                <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code"></a>
             </button>
         </div>
     </div>

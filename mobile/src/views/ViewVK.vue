@@ -103,6 +103,9 @@
         },
         mounted() {
 
+
+
+
             if (this.userVkID){
                 Api.vk.setUserID(this.userVkID);
             }

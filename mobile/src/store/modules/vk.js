@@ -4,10 +4,13 @@ import Player from '../../static/js/player';
 import Router from '../../router';
 
 import localStorage from '../../static/js/localStorage';
+import cookieStorage from '../../static/js/cookieStorage';
+
+
 
 //init state
 const state = {
-    userID:localStorage.userVkID,
+    userID:cookieStorage.getCookie('user_vk_id') || localStorage.userVkID,
     global:{
         pages:{
             count:-1,
