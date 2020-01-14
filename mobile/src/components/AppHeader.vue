@@ -1,10 +1,14 @@
 <template>
     <div id = "header">
-        <div id = "b-1" class = "side-block"></div>
+        <div id = "b-1" class = "side-block">
+            <router-link to ="/menu" >a</router-link>
+        </div>
         <div id = "header-logo">
             <img src = "./../static/img/logo/logo.svg" alt = "logo">
         </div>
-        <div id = "header-menu" class = "side-block"></div>
+        <div id = "header-menu" class = "side-block">
+
+        </div>
     </div>
 </template>
 

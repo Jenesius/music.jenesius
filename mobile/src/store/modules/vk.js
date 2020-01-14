@@ -3,12 +3,14 @@
 import Player from '../../static/js/player';
 import Router from '../../router';
 
+import localStorage from '../../static/js/localStorage';
+
 //init state
 const state = {
-    userID:Number,
+    userID:localStorage.userVkID,
     global:{
         pages:{
-            count:Number,
+            count:-1,
             current:Number,
         },
     },

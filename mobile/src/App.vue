@@ -2,12 +2,17 @@
   <div  id="app" ref = "mainBlock">
       <test/>
       <app-header/>
+      <!-- <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code">13</a>-->
+
       <div id = "main" >
-           <!-- <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code">13</a>-->
-          <router-view>
+           <router-view>
 
           </router-view>
       </div>
+
+      <router-view name = "menuA">
+
+      </router-view>
   </div>
 </template>
 
