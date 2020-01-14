@@ -79,7 +79,9 @@ const mutations = {
         if (tmp === true){
             Router.push('/vk/player');
         }else{
-            Router.back();
+            if (Router.history.current.path === '/vk/player'){
+                Router.back();
+            }
         }
 
     },

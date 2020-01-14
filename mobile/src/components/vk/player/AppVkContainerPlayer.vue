@@ -98,7 +98,9 @@
                 next(false);
                 this.fadeOut();
             }else{
+                clearTimeout(this.timer);
                 next();
+
             }
 
         }

@@ -11,7 +11,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/vk',
-    name: 'vk',
     component: ViewVK,
     children: [
       {
