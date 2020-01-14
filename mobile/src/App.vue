@@ -10,18 +10,18 @@
           </router-view>
       </div>
 
-      <router-view name = "menuA">
-
-      </router-view>
+      <view-menu></view-menu>
   </div>
 </template>
 
 <script>
   import AppHeader from "./components/AppHeader";
     import test from "./components/test/test";
+  import ViewMenu from "./views/ViewMenu";
 
   export default {
     components: {
+        ViewMenu,
         AppHeader,
         test
     },

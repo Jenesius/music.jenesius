@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import vk from './modules/vk.js';
 import test from './modules/test.js';
 import player from './modules/player.js';
+import menu from './modules/menu.js';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -18,5 +20,6 @@ export default new Vuex.Store({
     vk,
     test,
     player,
+    menu,
   }
 })

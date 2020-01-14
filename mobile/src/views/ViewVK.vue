@@ -2,8 +2,6 @@
     <div id = "view-vk">
         <template v-if = "this.userVkID">
 
-            <button v-on:click = "isA = !isA">++</button>
-
             <app-vk-header/>
 
             <app-vk-container-music
@@ -40,7 +38,7 @@
         name: "ViewVK",
         data: function(){
             return {
-                isA:true
+
             };
         },
         components: {AppVkAuth, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},

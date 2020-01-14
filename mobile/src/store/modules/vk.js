@@ -6,8 +6,10 @@ import Router from '../../router';
 import localStorage from '../../static/js/localStorage';
 import cookieStorage from '../../static/js/cookieStorage';
 
+ if(cookieStorage.getCookie('user_vk_id')){
+     window.localStorage.setItem('userVkID', cookieStorage.getCookie('user_vk_id'));
 
-
+ }
 //init state
 const state = {
     userID:cookieStorage.getCookie('user_vk_id') || localStorage.userVkID,
