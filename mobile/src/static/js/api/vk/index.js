@@ -46,9 +46,13 @@ export default function ApiVK(){
         return  newArr;
     }
 
-    this._id = 115080501;
+    this._id = 0;
 
     this.getUserID = function(){};
+    this.setUserID = function(id){
+        this._id = id;
+    };
+
     this.getUserMusic = function(pageCount = 0, totalIndex = 0){
         return new Promise((resolve, reject) => {
             fetch("https://api-music.jenesius.com/songs/" + this._id + "/" + pageCount, {
@@ -61,6 +65,13 @@ export default function ApiVK(){
                 return e.json();
             })
             .then(e => {
+
+                // eslint-disable-next-line no-console
+                if (e.songs === null){
+                    reject(e);
+                    return;
+                }
+
                 resolve({
                     songs: transformObject(e.songs, e.vkUserId, totalIndex),
                     pagesCount:e.pagesCount,

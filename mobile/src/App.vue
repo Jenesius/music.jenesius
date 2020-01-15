@@ -1,29 +1,38 @@
 <template>
   <div  id="app" ref = "mainBlock">
-      <test></test>
+      <test/>
       <app-header/>
-      <div id = "main" >
+      <!-- <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code">13</a>-->
 
-          <router-view>
+      <div id = "main" >
+           <router-view>
 
           </router-view>
       </div>
+
+      <view-menu></view-menu>
   </div>
 </template>
 
 <script>
   import AppHeader from "./components/AppHeader";
     import test from "./components/test/test";
+  import ViewMenu from "./views/ViewMenu";
 
   export default {
     components: {
+        ViewMenu,
         AppHeader,
         test
     },
   }
 </script>
-
+<style src='./static/css/default/app.css'></style>
 <style>
+
+
+
+
 *{
   --header:44px;
   --main-block:calc(100% - 44px);

@@ -1,6 +1,8 @@
 <template>
     <div id = "short-vk-player">
-        <div class = "info-block" @click = "test">
+        <div class = "info-block"
+             @touchend.passive = "test"
+        >
             <div class = "avatar">
                 <img  alt = "avatar"
                     :src = "track.info.urlImage"
@@ -57,6 +59,7 @@
         methods:{
             ...mapMutations({
                 setPositionPlayer: 'vk/setPositionPlayer',
+                setMessage:'test/setMessage',
             }),
             activate: function () {
                 Player.activate();

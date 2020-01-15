@@ -1,6 +1,6 @@
 
 <template>
-    <div id = "test">{{message}}</div>
+    <div id = "test"></div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
         computed: {
             ...mapState({
                 message:function(state){
-                    return state.test.message;
+                    return state.test.message || "";
                 }
             }),
         },
@@ -28,7 +28,7 @@
     left:0;
     top:0;
 
-    height: 10%;
+    height: 0;
     width: 100%;
 
     position: absolute;

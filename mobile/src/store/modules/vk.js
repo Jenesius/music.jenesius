@@ -1,13 +1,21 @@
  "use strict";
 
 import Player from '../../static/js/player';
+import Router from '../../router';
 
+import localStorage from '../../static/js/localStorage';
+import cookieStorage from '../../static/js/cookieStorage';
+
+ if(cookieStorage.getCookie('user_vk_id')){
+     window.localStorage.setItem('userVkID', cookieStorage.getCookie('user_vk_id'));
+
+ }
 //init state
 const state = {
-    userID:Number,
+    userID:cookieStorage.getCookie('user_vk_id') || localStorage.userVkID,
     global:{
         pages:{
-            count:Number,
+            count:-1,
             current:Number,
         },
     },
@@ -74,6 +82,15 @@ const mutations = {
     },
     setPositionPlayer(state, tmp){
         state.position.isPlayer = tmp;
+
+        if (tmp === true){
+            Router.push('/vk/player');
+        }else{
+            if (Router.history.current.path === '/vk/player'){
+                Router.back();
+            }
+        }
+
     },
     setPositionOnline(state, tmp){
       state.position.isOnline = tmp;

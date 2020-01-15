@@ -44,7 +44,6 @@
         methods: {
             ...mapMutations({
                 setPositionOnline: 'vk/setPositionOnline',
-                setMessage:'test/setMessage',
             }),
             checkScroll: function(){
                 if (this.$refs.containerMusicVk.scrollLeft > innerWidth/2){

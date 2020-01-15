@@ -1,14 +1,25 @@
 <template>
     <div id = "view-vk">
-        <app-vk-header/>
+        <template v-if = "this.userVkID">
 
-        <app-vk-container-music
-            v-on:scrollDown = "addMusicOnline"
+            <app-vk-header/>
+
+            <app-vk-container-music
+                    v-on:scrollDown = "addMusicOnline"
+            />
+
+            <app-vk-short-player/>
+
+            <router-view></router-view>
+        </template>
+
+        <app-vk-auth v-else
+            v-on:hide = "isA = !isA"
+            v-on:tryAuth = "tryAuth"
         />
 
-        <app-vk-short-player/>
 
-        <app-vk-container-player/>
+
     </div>
 </template>
 
@@ -19,15 +30,18 @@
     import Api from '../static/js/api';
     import Player from "../static/js/player";
     import {mapState, mapMutations} from 'vuex';
-    import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
+    import AppVkAuth from "../components/vk/AppVkAuth";
+    import localStorage from '../static/js/localStorage';
 
 
     export default {
         name: "ViewVK",
         data: function(){
-            return {};
+            return {
+
+            };
         },
-        components: {AppVkContainerPlayer, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
+        components: {AppVkAuth, AppVkContainerMusic, AppVkShortPlayer, AppVkHeader},
         methods:{
             ...mapMutations({
                 setOnlineMusic: 'vk/setOnlineMusic',
@@ -48,6 +62,28 @@
                             Player.addList(e.songs);
                         })
                 }
+            },
+            tryAuth: function(userID){
+                Api.vk.setUserID(userID);
+                Api.vk.getUserMusic().then(e => {
+
+
+                    localStorage.userVkID = userID;
+
+                    this.setOnlineMusic(e.songs);
+                    this.setPositionIndex(0);
+                    Player.setList(e.songs);
+                    Player.setTrack(0);
+
+                    this.setPagesCount(e.pagesCount);
+                    this.setCurrentPages(0);
+
+                })
+                    // eslint-disable-next-line no-unused-vars
+                .catch(e => {
+                    // eslint-disable-next-line no-console
+                    console.log('++++++++++++');
+                })
             }
         },
         computed:{
@@ -57,20 +93,38 @@
                 },
                 countTrack: function(state){
                     return state.vk.music.online.length;
+                },
+                userVkID: function(state){
+                    return state.vk.userID;
                 }
             }),
         },
         mounted() {
-            Api.vk.getUserMusic().then(e => {
-                this.setOnlineMusic(e.songs);
-                this.setPositionIndex(0);
-                Player.setList(e.songs, );
-                Player.setTrack(0);
 
-                this.setPagesCount(e.pagesCount);
-                this.setCurrentPages(0);
 
-            })
+
+
+            if (this.userVkID){
+                Api.vk.setUserID(this.userVkID);
+            }
+            // eslint-disable-next-line no-console
+            console.log('userID', this.userVkID);
+
+            // eslint-disable-next-line no-empty
+            if (this.pages.count !== -1){
+
+            }else{
+                Api.vk.getUserMusic().then(e => {
+                    this.setOnlineMusic(e.songs);
+                    this.setPositionIndex(0);
+                    Player.setList(e.songs);
+                    Player.setTrack(0);
+
+                    this.setPagesCount(e.pagesCount);
+                    this.setCurrentPages(0);
+
+                })
+            }
         }
     }
 </script>
