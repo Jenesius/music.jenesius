@@ -69,6 +69,9 @@
 
     background-color: var(--black1 );
 }
+#menu>.back{
+    height: 50px !important;
+}
 .active{
     transform: translateX(0px) !important;
 }

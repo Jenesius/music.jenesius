@@ -5,7 +5,7 @@ import AppVkContainerPlayer from "../components/vk/player/AppVkContainerPlayer";
 import ViewMenu from "../views/ViewMenu";
 
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
 
