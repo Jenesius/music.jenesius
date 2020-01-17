@@ -10,7 +10,7 @@
 
             <app-vk-short-player/>
 
-            <router-view></router-view>
+
         </template>
 
         <app-vk-auth v-else

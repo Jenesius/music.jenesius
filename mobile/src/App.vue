@@ -5,23 +5,20 @@
       <!-- <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=http://localhost:3131/auth/vk&response_type=code">13</a>-->
 
       <div id = "main" >
-           <router-view>
-
-          </router-view>
+           <app-view name = "main"></app-view>
       </div>
 
-      <view-menu></view-menu>
+      <app-view name = "menu"></app-view>
   </div>
 </template>
 
 <script>
   import AppHeader from "./components/AppHeader";
     import test from "./components/test/test";
-  import ViewMenu from "./views/ViewMenu";
+
 
   export default {
     components: {
-        ViewMenu,
         AppHeader,
         test
     },

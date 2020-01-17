@@ -6,9 +6,14 @@ import Router from '../../router';
 import localStorage from '../../static/js/localStorage';
 import cookieStorage from '../../static/js/cookieStorage';
 
- if(cookieStorage.getCookie('user_vk_id')){
-     window.localStorage.setItem('userVkID', cookieStorage.getCookie('user_vk_id'));
 
+let _tmp = window.location.search.substr(1).slice(window.location.search.substr(1).indexOf('=') + 1);
+ if(_tmp){
+
+
+     window.localStorage.setItem('userVkID', _tmp);
+
+     window.location = window.location.origin + window.location.pathname;
  }
 //init state
 const state = {

@@ -44,8 +44,11 @@
                 this.setActiveMenu(false);
             },
             openVK: function(){
-                this.$router.push('/vk');
+                //this.$router.push('/vk');
             },
+        },
+        mounted() {
+            this.setActiveMenu(true);
         }
 
     }
