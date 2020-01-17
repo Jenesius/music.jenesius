@@ -28,9 +28,11 @@ img{
     --main: #ff2e54;
     --main1:#7FAFF7;
 
-    --fast:0.1s;
-    --medium:0.2s;
-    --slow:0.5s;
+    --ex-fast:0.1s;
+    --fast:   0.2s;
+    --medium: 0.3s;
+    --slow:   0.4s;
+    --ex-slow:0.5s;
 
     font-family: Manrope, sans-serif;
 }
