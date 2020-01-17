@@ -8,7 +8,7 @@
                 <div class = "prev"
                      v-on:click = "prevTrack"
                 >
-                    <img src = "../../../static/img/ico/audio/prev.svg" alt = "Previous track">
+                    <img src = "../../static/img/ico/audio/prev.svg" alt = "Previous track">
                 </div>
                 <div class = "activate"
                      v-on:click = "clickActivate"
@@ -18,7 +18,7 @@
                 <div class = "next"
                      v-on:click = "nextTrack"
                 >
-                    <img src = "../../../static/img/ico/audio/next.svg"  alt = "Next track">
+                    <img src = "../../static/img/ico/audio/next.svg" alt = "Next track">
                 </div>
             </div>
 
@@ -29,20 +29,20 @@
             <div class = "random sub-block"
                  v-on:click = "randomTrack"
             >
-                <img src = "../../../static/img/ico/arrow/random.svg"  alt = "Random mod">
+                <img src = "../../static/img/ico/arrow/random.svg" alt = "Random mod">
             </div>
             <div class = "loop sub-block"
                  v-on:click = "loopTrack"
                  :class = "{active: loop}"
             >
-                <img src = "../../../static/img/ico/arrow/loop.svg" alt = "Loop mod">
+                <img src = "../../static/img/ico/arrow/loop.svg" alt = "Loop mod">
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Player from "../../../static/js/player";
+    import Player from "../../static/js/player";
     import {mapGetters} from "vuex";
 
     export default {

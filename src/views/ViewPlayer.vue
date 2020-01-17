@@ -11,14 +11,14 @@
              :style="{opacity: opacitySpace}"
         ></div>
         <app-vk-player
-            v-on:fadeOut="fadeOut"
+                v-on:fadeOut="fadeOut"
         />
     </div>
 </template>
 
 <script>
     import {mapMutations, mapState} from "vuex";
-    import AppVkPlayer from "./AppVkPlayer";
+    import AppVkPlayer from "./../components/player/AppVkPlayer";
 
     export default {
         name: "AppVkContainerPlayer",

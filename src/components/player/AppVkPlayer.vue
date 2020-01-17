@@ -3,7 +3,7 @@
             <div class = "header"
                  v-on:click = "$emit('fadeOut')"
             >
-                <img src = "../../../static/img/ico/arrow/arrowDown.svg">
+                <img src = "../../static/img/ico/arrow/arrowDown.svg">
             </div>
             <div class = "trackImage">
                 <div></div>
@@ -26,7 +26,7 @@
 
 <script>
     import AppVkTimeLine from "./AppVkTimeLine";
-    import Player from "../../../static/js/player";
+    import Player from "../../static/js/player";
     import {mapState} from 'vuex';
     import AppVkTrackFunction from "./AppVkTrackFunction";
 

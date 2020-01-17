@@ -24,14 +24,14 @@
 </template>
 
 <script>
-    import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
-    import AppVkHeader from "../components/vk/AppVkHeader";
-    import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
-    import Api from '../static/js/api';
-    import Player from "../static/js/player";
+    import AppVkShortPlayer from "../../components/vk/AppVkShortPlayer";
+    import AppVkHeader from "../../components/vk/AppVkHeader";
+    import AppVkContainerMusic from "../../components/vk/AppVkContainerMusic";
+    import Api from '../../static/js/api';
+    import Player from "../../static/js/player";
     import {mapState, mapMutations} from 'vuex';
-    import AppVkAuth from "../components/vk/AppVkAuth";
-    import localStorage from '../static/js/localStorage';
+    import AppVkAuth from "../../components/vk/AppVkAuth";
+    import localStorage from '../../static/js/localStorage';
 
 
     export default {
