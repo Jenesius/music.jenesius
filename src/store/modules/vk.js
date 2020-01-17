@@ -1,7 +1,8 @@
  "use strict";
 
 import Player from '../../static/js/player';
-import Router from '../../router';
+
+const Router = {};
 
 import localStorage from '../../static/js/localStorage';
 import cookieStorage from '../../static/js/cookieStorage';
