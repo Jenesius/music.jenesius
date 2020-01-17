@@ -1,7 +1,7 @@
 <template>
      <div id = "vk-player">
             <div class = "header"
-                 v-on:click = "$emit('fadeOut')"
+                 @click = "this.$backRoute"
             >
                 <img src = "../../static/img/ico/arrow/arrowDown.svg">
             </div>

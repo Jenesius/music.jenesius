@@ -68,7 +68,8 @@
                 Player.next();
             },
             test: function(){
-                this.setPositionPlayer(true);
+                this.$pushRoute('#player')
+
             },
         }
     }

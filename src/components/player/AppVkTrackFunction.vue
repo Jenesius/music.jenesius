@@ -27,12 +27,12 @@
 
         <div class = "func-2">
             <div class = "random sub-block"
-                 v-on:click = "randomTrack"
+                 @click = "randomTrack"
             >
                 <img src = "../../static/img/ico/arrow/random.svg" alt = "Random mod">
             </div>
             <div class = "loop sub-block"
-                 v-on:click = "loopTrack"
+                 @click = "loopTrack"
                  :class = "{active: loop}"
             >
                 <img src = "../../static/img/ico/arrow/loop.svg" alt = "Loop mod">

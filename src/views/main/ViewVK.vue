@@ -82,7 +82,7 @@
                     // eslint-disable-next-line no-unused-vars
                 .catch(e => {
                     // eslint-disable-next-line no-console
-                    console.log('++++++++++++');
+                    console.log('Error get music');
                 })
             }
         },
@@ -107,8 +107,7 @@
             if (this.userVkID){
                 Api.vk.setUserID(this.userVkID);
             }
-            // eslint-disable-next-line no-console
-            console.log('userID', this.userVkID);
+
 
             // eslint-disable-next-line no-empty
             if (this.pages.count !== -1){
