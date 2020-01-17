@@ -55,7 +55,7 @@ export default function ApiVK(){
 
     this.getUserMusic = function(pageCount = 0, totalIndex = 0){
         return new Promise((resolve, reject) => {
-            fetch("https://api-music.jenesius.com/songs/" + this._id + "/" + pageCount, {
+            fetch("https://api-music.jenesius.com/api/songs/lists/" + this._id + "/" + pageCount, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

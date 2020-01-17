@@ -1,7 +1,7 @@
 <template>
     <div id = "header">
         <div  class = "side-block button-menu"
-            v-on:click = "openMenu"
+            v-on:click = "goTo('#menu')"
         >
             <img src = "../static/img/ico/menu/menu.svg" alt = "menu">
             <img src = "../static/img/ico/menu/vk.svg" class = "currentViewLogo">
@@ -21,6 +21,9 @@
     export default {
         name: "AppHeader",
         methods:{
+            goTo: function(route){
+                this.$pushRoute(route);
+            },
             openMenu: function(){
                 this.setActiveMenu(true);
             },
