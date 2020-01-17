@@ -22,7 +22,6 @@
 
 <script>
     import Player from '../../static/js/player';
-    import {mapMutations} from 'vuex';
     import Time from '../../static/js/default/timeModify';
 
     export default {
@@ -44,13 +43,8 @@
             }
         },
         methods:{
-            ...mapMutations({
-                updatePositionIndex: 'vk/updatePositionIndex',
-            }),
             setTrack: function () {
                 Player.setTrack(this.index);
-
-                this.updatePositionIndex();
             }
         }
     }
