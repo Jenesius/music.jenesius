@@ -9,14 +9,14 @@
                 <input v-model = "inputID"  type="number">
                 <img src = "../../static/img/ico/send.svg"
                     :class = "{active: isInputNumber}"
-                    v-on:click = "test"
+                    @v-on:click = "test"
                 >
             </div>
             <p class = "sub-p">или</p>
             <button class = "button button-vk button-link button-img">
                 <img src = "../../static/img/logo/vk/vk-back.svg" alt = "vk logo">
                 <p>Войти через ВК</p>
-                <a href = "http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=https://api-music.jenesius.com/auth/vk&response_type=code"></a>
+                <a href="http://oauth.vk.com/authorize?client_id=7280361&redirect_uri=https://api-music.jenesius.com/auth/vk&response_type=code"/>
             </button>
         </div>
     </div>
@@ -113,25 +113,26 @@
 }
 
 #vk-auth>.input>.input-user-id{
+    position: relative;
+
     width: 100%;
-    background-color:var(--black4);
     height: 38px;
 
     border: 0;
     border-radius: 4px;
 
-    position: relative;
-
+    background-color:var(--black4);
     overflow: hidden;
 }
 #vk-auth>.input>.input-user-id>input{
-
-    border: 0;
-    outline: none;
-
     height: 100%;
     width: calc(100% - 60px);
+
+    border: 0;
     padding-left: 10px;
+
+    outline: none;
+
 
     color:var(--white1);
 
@@ -139,17 +140,18 @@
 
 }
 #vk-auth>.input>.input-user-id>img{
-    height: 16px;
-
     position: absolute;
     top: 0;
     bottom: 0;
-
-    margin: auto;
     right: 16px;
 
-    transition: var(--fast);
+    height: 16px;
+
     padding: 8px;
+    margin: auto;
+
+
+    transition: var(--fast);
 }
 
 #vk-auth>.input>.input-user-id>.active{

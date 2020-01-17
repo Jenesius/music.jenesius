@@ -1,33 +1,22 @@
 <template>
     <div id = "short-vk-player">
         <div class = "info-block"
-             @touchend.passive = "test"
+             @touchend.passive = "openPlayer"
         >
             <div class = "avatar">
-                <img  alt = "avatar"
-                    :src = "track.info.urlImage"
-                >
+                <img  alt = "avatar" :src = "track.info.urlImage">
             </div>
             <div class = "title">
                 <p>{{ track.info.title }}</p>
             </div>
         </div>
-        <div class = "nav"
-
-        >
-            <div class = "active"
-                @click = "activate"
-            >
+        <div class = "nav">
+            <div class = "active" @click = "activate">
                 <div>
-                    <img  alt = "active"
-                        :src = "srcIsActive"
-                    >
+                    <img  alt = "active" :src = "srcIsActive">
                 </div>
-
             </div>
-            <div class = "next"
-                @click = "next"
-            >
+            <div class = "next" @click = "next">
                 <div>
                     <img src = "./../../static/img/ico/audio/next.svg" alt = "next">
                 </div>
@@ -39,37 +28,28 @@
 
 <script>
     import Player from "../../static/js/player";
-    import {mapState, mapMutations, mapGetters} from 'vuex';
+    import {mapGetters} from 'vuex';
 
     export default {
         name: "AppVkShortPlayer",
         computed:{
             track: function() {
-                return Player.getTrack(this.position);
+                return Player.getTrack(this.$store.state.player.position);
             },
-            ...mapState({
-                position: function(state){
-                    return state.player.position;
-                },
-            }),
             ...mapGetters({
                 srcIsActive: 'player/srcIsActive',
             }),
         },
         methods:{
-            ...mapMutations({
-                setPositionPlayer: 'vk/setPositionPlayer',
-                setMessage:'test/setMessage',
-            }),
             activate: function () {
                 Player.activate();
             },
             next: function(){
                 Player.next();
             },
-            test: function(){
-                this.setPositionPlayer(true);
-            },
+            openPlayer: function(){
+                this.$pushRoute('#player');
+            }
         }
     }
 </script>

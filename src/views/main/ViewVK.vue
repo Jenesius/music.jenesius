@@ -24,14 +24,14 @@
 </template>
 
 <script>
-    import AppVkShortPlayer from "../components/vk/AppVkShortPlayer";
-    import AppVkHeader from "../components/vk/AppVkHeader";
-    import AppVkContainerMusic from "../components/vk/AppVkContainerMusic";
-    import Api from '../static/js/api';
-    import Player from "../static/js/player";
+    import AppVkShortPlayer from "../../components/vk/AppVkShortPlayer";
+    import AppVkHeader from "../../components/vk/AppVkHeader";
+    import AppVkContainerMusic from "../../components/vk/AppVkContainerMusic";
+    import Api from '../../static/js/api';
+    import Player from "../../static/js/player";
     import {mapState, mapMutations} from 'vuex';
-    import AppVkAuth from "../components/vk/AppVkAuth";
-    import localStorage from '../static/js/localStorage';
+    import AppVkAuth from "../../components/vk/AppVkAuth";
+    import localStorage from '../../static/js/localStorage';
 
 
     export default {
@@ -82,7 +82,7 @@
                     // eslint-disable-next-line no-unused-vars
                 .catch(e => {
                     // eslint-disable-next-line no-console
-                    console.log('++++++++++++');
+                    console.log('Error get music');
                 })
             }
         },
@@ -107,8 +107,7 @@
             if (this.userVkID){
                 Api.vk.setUserID(this.userVkID);
             }
-            // eslint-disable-next-line no-console
-            console.log('userID', this.userVkID);
+
 
             // eslint-disable-next-line no-empty
             if (this.pages.count !== -1){

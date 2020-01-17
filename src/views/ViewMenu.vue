@@ -1,116 +1,88 @@
 <template>
-    <div id = "menu"
-        :class = "{active: isActive}"
-    >
-        <div class = "menu-elem back"
-           @click = "close"
-         >
-             <img src = "../static/img/ico/arrow/arrowLeft.svg">
+    <transition name = "fade">
+        <div class = "site-menu" ref="siteHeader">
+            <div class = "site-menu-elem back"  @click = "close">
+                 <img src = "../static/img/ico/arrow/arrowLeft.svg" alt = "close menu">
+            </div>
+            <div class = "site-menu-elem vk"  @click = "openVK">
+                 <img src = "../static/img/logo/vk/vk.svg" alt = "vk">
+            </div>
+            <div class = "site-menu-elem beta">
+                 <img src = "../static/img/logo/stream/stream-no-active.svg" alt = "vk">
+                 <p>Бета</p>
+            </div>
         </div>
-        <div class = "menu-elem vk"
-              @click = "openVK"
-        >
-             <img src = "../static/img/logo/vk/vk.svg" alt = "vk">
-        </div>
-        <div class = "menu-elem beta">
-             <img src = "../static/img/logo/stream/stream-no-active.svg" alt = "vk">
-             <p>Бета</p>
-        </div>
-    </div>
+    </transition>
 </template>
 
 <script>
-
-    import {mapMutations, mapState} from 'vuex';
-
     export default {
         name: "ViewMenu",
-        data: function(){
-            return {
-            }
-        },
-        computed:{
-            ...mapState({
-                isActive: function(state){
-                   return state.menu.isActive;
-                }
-            })
-        },
         methods:{
-            ...mapMutations({
-                setActiveMenu:'menu/setActive',
-            }),
             close: function(){
-                this.setActiveMenu(false);
+                this.$backRoute();
             },
             openVK: function(){
-                //this.$router.push('/vk');
+                this.$backRoute();
             },
         },
-        mounted() {
-            this.setActiveMenu(true);
-        }
-
     }
 </script>
 
 <style scoped>
-#menu{
-    height: 100%;
-    width: 60px;
+.site-menu{
+    --width:60px;
 
+    display: flex;
+    flex-direction: column;
 
     position: absolute;
     left:0;
     top:0;
-    display: flex;
-    flex-direction: column;
 
+    height: 100%;
+    width: var(--width);
 
-    transition:transform 0.2s;
-    transform: translateX(-60px);
-
-    background-color: var(--black1 );
+    background-color: var(--black1);
 }
-#menu>.back{
+.fade-enter-active, .fade-leave-active {
+    transition: transform var(--medium);
+}
+.fade-enter, .fade-leave-to  {
+    transform: translateX(calc(var(--width) * -1));
+}
+.site-menu>.back{
     height: 50px !important;
 }
-.active{
-    transform: translateX(0px) !important;
-}
-
-#menu>.menu-elem{
-    width: 100%;
-    height: 60px;
-
+.site-menu-elem{
     display: flex;
     justify-content: center;
     align-items: center;
 
     position: relative;
+
+    width: 100%;
+    height: 60px;
 }
-#menu>.menu-elem>img{
+.site-menu-elem>img{
     height: 23px;
 }
-#menu>.beta>img{
+.site-menu>.beta>img{
     opacity: 0.5;
 }
-#menu>.beta>p{
-    background-color: var(--main);
-    font-size: 7px;
-    color:white;
-    padding: 0 3px;
-    border-radius: 5px;
-
+.site-menu>.beta>p{
     position: absolute;
-
     right: 7px;
     bottom: 13px;
 
-}
+    border-radius: 5px;
+    padding: 0 3px;
 
-#menu>.back>img{
+    background-color: var(--main);
+    font-size: 7px;
+    color:var(--white1);
+}
+.site-menu>.back>img{
     height: 15px;
 }
-
 </style>

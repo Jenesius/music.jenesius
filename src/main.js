@@ -1,11 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
-//import router from './router'
-import JVueRouter from 'j-vue-router'
+import Vue from 'vue';
+import App from './App.vue';
+import './registerServiceWorker';
+
+import JVueRouter from 'j-vue-router';
 import store from './store'
-import ViewVK from "./views/ViewVK";
+
+import ViewVK from "./views/main/ViewVK";
 import ViewMenu from "./views/ViewMenu";
+import ViewPlayer from "./views/ViewPlayer";
 
 
 
@@ -30,6 +32,13 @@ const routes = [
     path: '#menu',
     components: {
       'menu': ViewMenu
+    },
+    isSubView: true,
+  },
+  {
+    path: '#player',
+    components: {
+      'player': ViewPlayer
     },
     isSubView: true,
   }

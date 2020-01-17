@@ -1,24 +1,23 @@
 <template>
-    <div id = "vk-container-player"
+    <transition
+        @leave = "this.fadeOut"
+            >
+    <div id = "vk-container-player" ref="containerPlayer"
 
-         v-on:touchend = "checkPosition"
-         v-on:touchstart = "reScrollPage"
-         v-on:scroll="checkScroll"
+         @touchend = "checkPosition"
+         @touchstart = "reScrollPage"
+         @scroll="checkScroll"
 
-         ref="containerPlayer"
     >
-        <div class = "space"
-             :style="{opacity: opacitySpace}"
-        ></div>
-        <app-vk-player
-            v-on:fadeOut="fadeOut"
-        />
+        <div class = "space"  id = "space-vk-container-player"></div>
+
+        <app-vk-player @fadeOut="fadeOut"/>
     </div>
+    </transition>
 </template>
 
 <script>
-    import {mapMutations, mapState} from "vuex";
-    import AppVkPlayer from "./AppVkPlayer";
+    import AppVkPlayer from "./../components/player/AppVkPlayer";
 
     export default {
         name: "AppVkContainerPlayer",
@@ -27,23 +26,13 @@
             return {
                 timer:Number,
                 scrollTopEnd:Number,
-
-                opacitySpace:0.1,
             };
         },
-        computed:{
-            ...mapState({
-                isPlayer:function (state) {
-                    return state.vk.position.isPlayer;
-                },
-            }),
-        },
         methods:{
-            ...mapMutations({
-                setPositionPlayer: 'vk/setPositionPlayer',
-                setMessage: 'test/setMessage',
-            }),
             checkPosition: function () {
+
+                if (this.$refs.containerPlayer === undefined) return;
+
                 if (this.scrollTopEnd === this.$refs.containerPlayer.scrollTop){
                     this.scrollPage();
                 }else{
@@ -67,43 +56,23 @@
                 this.$refs.containerPlayer.scrollTo(0,0);
             },
             checkScroll: function(){
-                let tmp = Math.round(this.$refs.containerPlayer.scrollTop);
+                let container =document.getElementById('vk-container-player');
+                let obj =document.getElementById('space-vk-container-player');
 
-                this.opacitySpace = tmp/innerHeight;
 
-                if(tmp === 0){
-                    this.setPositionPlayer(false);
+                let tmp = Math.round(container.scrollTop);
+                obj.style.opacity = tmp/innerHeight;
+
+
+                if (tmp === 0 && window.location.hash === "#player"){
+                    this.$backRoute();
                 }
-                if(tmp === innerHeight){
-                    this.setPositionPlayer(true);
-                }
-            },
-        },
-        watch:{
-            isPlayer: function (newValue) {
-                if(newValue){
-                    setTimeout(this.fadeIn, 50);
-                }else{
-                    setTimeout(this.fadeOut, 50);
-                }
+
             },
         },
         mounted() {
             this.fadeIn();
         },
-
-        beforeRouteLeave (to, from, next) {
-
-            if(Math.round(this.$refs.containerPlayer.scrollTop) === innerHeight){
-                next(false);
-                this.fadeOut();
-            }else{
-                clearTimeout(this.timer);
-                next();
-
-            }
-
-        }
     }
 </script>
 
@@ -119,7 +88,10 @@
 
         overflow-y: scroll;
         scroll-behavior: smooth;
-        transition: var(--medium);
+        transition: var(--ex-slow);
+    }
+    #vk-container-player>.space{
+        opacity: 0;
     }
     #vk-container-player::-webkit-scrollbar{
         width: 0;

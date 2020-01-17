@@ -1,7 +1,7 @@
 "use strict";
 //state
 const state = {
-    isActive: false,
+
 };
 
 //getters
@@ -17,11 +17,7 @@ const mutations = {
     test(state){
         state.isActive = false;
     },
-    setActive(state, tmp){
 
-        state.isActive = tmp;
-
-    },
 };
 
 
