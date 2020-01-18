@@ -9,7 +9,7 @@
                 <input v-model = "inputID"  type="number">
                 <img src = "../../static/img/ico/send.svg"
                     :class = "{active: isInputNumber}"
-                    @v-on:click = "test"
+                    @click = "test"
                 >
             </div>
             <p class = "sub-p">или</p>
@@ -38,7 +38,7 @@
         },
         methods:{
             test: function(){
-                alert('getUserID');
+                alert('test auth');
                 this.$emit('tryAuth', this.inputID);
             }
         }
