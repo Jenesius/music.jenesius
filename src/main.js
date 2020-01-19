@@ -33,14 +33,12 @@ const routes = [
     components: {
       'menu': ViewMenu
     },
-    isSubView: true,
   },
   {
     path: '#player',
     components: {
       'player': ViewPlayer
     },
-    isSubView: true,
   }
 ];
 

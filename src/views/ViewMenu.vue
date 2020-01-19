@@ -23,7 +23,7 @@
                 this.$backRoute();
             },
             openVK: function(){
-                this.$backRoute();
+                this.$pushRoute('/vk');
             },
         },
     }

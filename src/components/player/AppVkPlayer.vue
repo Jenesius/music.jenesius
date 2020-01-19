@@ -1,7 +1,7 @@
 <template>
      <div id = "vk-player">
             <div class = "header"
-                 @click = "this.$backRoute"
+                 @click = "close"
             >
                 <img src = "../../static/img/ico/arrow/arrowDown.svg">
             </div>
@@ -43,6 +43,11 @@
                 },
             }),
         },
+        methods:{
+            close: function () {
+                this.$backRoute("#player");
+            }
+        }
     }
 </script>
 
