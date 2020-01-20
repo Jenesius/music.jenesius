@@ -1,8 +1,6 @@
 import store from "../../../../store/";
 
 class controller{
-
-
     setActivate (value){
         store.commit('player/setActivate', value);
     }

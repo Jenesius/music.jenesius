@@ -70,7 +70,8 @@
             },
         },
         mounted() {
-
+            this.loop = Player.isLoop();
+            this.random = Player.isRandom();
         }
     }
 </script>
