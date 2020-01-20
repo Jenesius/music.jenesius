@@ -1,41 +1,34 @@
 <template>
-     <div id = "vk-player">
-            <div class = "header"
-                 @click = "close"
-            >
-                <img src = "../../static/img/ico/arrow/arrowDown.svg">
+     <div class = "player">
+            <div class = "player-header" @click = "close">
+                <img src = "../../static/img/ico/arrow/arrowDown.svg" alt = "Download track">
             </div>
-            <div class = "trackImage">
+            <div class = "player-track-image">
                 <div></div>
             </div>
-            <div class = "trackTimeLine">
-                <app-vk-time-line
-                    :duration-track="track.info.duration"
-                />
+            <div class = "player-time-line">
+                <app-player-time-line :duration-track="track.info.duration"/>
             </div>
-            <div class = "trackInfo">
-                <p class = "title">{{ track.info.title }}</p>
-                <p class = "artist">{{ track.info.artist }}</p>
+            <div class = "player-track-info">
+                <p class = "player-track-title">{{ track.info.title }}</p>
+                <p class = "player-track-artist">{{ track.info.artist }}</p>
             </div>
 
-            <app-vk-track-function
-                :isDownload = "track.isDownload"
-            />
+            <app-player-track-function :isDownload = "track.isDownload"/>
         </div>
 </template>
 
 <script>
-    import AppVkTimeLine from "./AppVkTimeLine";
-    import Player from "../../static/js/player";
     import {mapState} from 'vuex';
-    import AppVkTrackFunction from "./AppVkTrackFunction";
+
+    import Player from "../../static/js/player";
+
+    import AppPlayerTimeLine from "./AppPlayerTimeLine";
+    import AppPlayerTrackFunction from "./AppPlayerTrackFunction";
 
     export default {
         name: "AppVkPlayer",
-        components: {AppVkTrackFunction, AppVkTimeLine},
-        data:function(){
-            return {};
-        },
+        components: {AppPlayerTrackFunction, AppPlayerTimeLine},
         computed:{
             ...mapState({
                 track: function(state) {
@@ -51,12 +44,12 @@
     }
 </script>
 
-<style scoped>
-    #vk-player{
+<style >
+    .player{
         display: flex;
         flex-direction: column;
     }
-    #vk-player>.header{
+    .player-header{
         display: flex;
         justify-content: center;
 
@@ -65,16 +58,13 @@
 
         transition: var(--medium);
     }
-    #vk-player>.header:active{
+    .player-header:active{
         background-color: var(--black3);
     }
-    #vk-player>.header>img{
+    .player-header>img{
         height: 15px;
     }
-    #vk-player>.trackTimeLine{
-        padding: 9px 15px;
-    }
-    #vk-player>.trackImage{
+    .player-track-image{
         display: flex;
         justify-content: center;
         align-content: center;
@@ -82,14 +72,19 @@
 
         padding: 0 15px;
     }
-    #vk-player>.trackImage>div{
+    .player-track-image>div{
         width: 100%;
 
         border-radius: 15px;
 
         background-color: var(--black3);
     }
-    #vk-player>.trackInfo{
+
+    .player-time-line{
+        padding: 9px 15px;
+    }
+
+    .player-track-info{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -97,16 +92,16 @@
 
         padding: 20px 0;
     }
-    #vk-player>.trackInfo>.title{
+    .player-track-title{
         color:var(--white1);
         font-size: 21px;
         font-weight: 500;
     }
-    #vk-player>.trackInfo>.artist{
+    .player-track-artist{
         color:var(--gray1);
         font-size: 16px;
     }
-    #vk-player>.trackInfo>p{
+    .player-track-artist>p{
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

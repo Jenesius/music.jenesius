@@ -1,6 +1,6 @@
 <template>
-    <div id = "vkTimeLine">
-        <div class = "inputTime">
+    <div class = "time-line">
+        <div class = "time-line-input">
             <input type = "range"
                 v-model = "inputTimeLine" min = "0" max = "100" step = "0.5" value="0"
                 :style = "backgroundRange"
@@ -8,7 +8,7 @@
                 @touchend = "onTouchEnd"
             >
         </div>
-        <div class = "trackTime">
+        <div class = "time-line-time">
             <span>{{ customCurrentTime }}</span>
             <span>{{ customDurationTrack }}</span>
         </div>
@@ -52,7 +52,6 @@
                 this.idTimer = setInterval(()=>{
                     this.inputTimeLine =  (Player.currentTime / Player.track.duration * 100) || 0;
                 }, 1000);
-
             },
             onTouchStart: function(){
                 clearInterval(this.idTimer);
@@ -69,16 +68,16 @@
 </script>
 
 <style scoped>
-    #vkTimeLine{
+    .time-line{
         display: flex;
         flex-direction: column;
     }
-    #vkTimeLine>.inputTime{
+    .time-line-input{
         display: flex;
 
         padding: 7px 0 4px 0;
     }
-    #vkTimeLine>.inputTime>input{
+    .time-line-input>input{
         width: 100%;
         height:2px;
 
@@ -88,7 +87,7 @@
 
         -webkit-appearance: none;
     }
-    #vkTimeLine>.inputTime>input::-webkit-slider-thumb{
+    .time-line-input>input::-webkit-slider-thumb{
         width:13px;
         height:13px;
 
@@ -102,7 +101,7 @@
         -webkit-appearance: none;
         transition:var(--medium);
     }
-    #vkTimeLine>.trackTime{
+    .time-line-time{
         display: flex;
         justify-content: space-between;
 

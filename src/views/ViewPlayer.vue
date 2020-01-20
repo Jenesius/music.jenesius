@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import AppVkPlayer from "./../components/player/AppVkPlayer";
+    import AppVkPlayer from "../components/player/AppPlayer";
 
     export default {
         name: "AppVkContainerPlayer",
