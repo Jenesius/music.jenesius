@@ -1,24 +1,18 @@
  "use strict";
 
-import Player from '../../static/js/player';
-
-const Router = {};
-
 import localStorage from '../../static/js/localStorage';
-import cookieStorage from '../../static/js/cookieStorage';
 
-
+//Получение id из URL, и замена URL без кеша
+//Вынести за пределы Storage
 let _tmp = window.location.search.substr(1).slice(window.location.search.substr(1).indexOf('=') + 1);
- if(_tmp){
-
-
+if(_tmp){
      window.localStorage.setItem('userVkID', _tmp);
-
      window.location = window.location.origin + window.location.pathname;
  }
+
 //init state
 const state = {
-    userID:cookieStorage.getCookie('user_vk_id') || localStorage.userVkID,
+    userID:localStorage.userVkID,
     global:{
         pages:{
             count:-1,
@@ -28,7 +22,6 @@ const state = {
     filterStr:"",
     position:{
         isOnline:Boolean,
-        isPlayer:false,
     },
     music:{
         online:[],
@@ -51,16 +44,7 @@ const getters = {
             return true;
         })
     },
-    getIsActive: function(state){
 
-        let src;
-        if(state.player.isActive){src = "/img/ico/audio/pause.svg"}
-            else{ src = "/img/ico/audio/play.svg"}
-        return {
-            isActive:state.player.isActive,
-            src:src,
-        };
-    }
 };
 
 //actions
@@ -73,30 +57,6 @@ const mutations = {
     },
     setCurrentPages(state, count){
       state.global.pages.current = count;
-    },
-    activatePlayer(state){
-        state.player.isActive = !state.player.isActive;
-    },
-    setTimerTimeLine(state, idTimer){
-        state.player.timerTimeLine = idTimer;
-    },
-    updatePositionIndex(state){
-        state.position.index = Player.index;
-    },
-    updateFilter(state, tmp){
-        state.filterStr = tmp;
-    },
-    setPositionPlayer(state, tmp){
-        state.position.isPlayer = tmp;
-
-        if (tmp === true){
-            Router.push('/vk/player');
-        }else{
-            if (Router.history.current.path === '/vk/player'){
-                Router.back();
-            }
-        }
-
     },
     setPositionOnline(state, tmp){
       state.position.isOnline = tmp;

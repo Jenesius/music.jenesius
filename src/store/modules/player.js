@@ -13,7 +13,7 @@ const getters = {
         if(!state.isActive){src = "/img/ico/audio/play.svg"}
 
         return src;
-    }
+    },
 };
 
 //actions

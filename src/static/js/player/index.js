@@ -11,7 +11,7 @@ class Player{
         this._list = new List();
 
         this._pos = 0;
-
+        this._random = false;
 
         this.track.addEventListener('ended', () => {
             this.next();
@@ -29,11 +29,17 @@ class Player{
         })
 
     }
+    //Заменяет треклист полученным
     setList(list) {
         this._list.set(list);
     }
+    //Добавляет в конец полученный плейлист
     addList(list) {
         this._list.add(list);
+    }
+
+    getList(){
+        return this._list.get();
     }
 
     get position(){
@@ -67,10 +73,7 @@ class Player{
         }
         return this._list.get()[pos];
     }
-    getList(){
-        return this._list.get();
 
-    }
     activate() {
         if (this._track.paused){
             this._track.play();
@@ -90,9 +93,6 @@ class Player{
     }
 
     next(){
-
-
-
         let pos = this.position + 1;
 
         this.setTrack(pos);
@@ -119,6 +119,13 @@ class Player{
     }
     get currentTime(){
         return this.track.currentTime;
+    }
+
+    isLoop(){
+        return this.track.loop;
+    }
+    isRandom(){
+        return this._random;
     }
 
 }
